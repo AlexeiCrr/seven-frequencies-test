@@ -1,0 +1,37 @@
+<table
+  *ngIf="answers.length"
+  mat-table
+  [dataSource]="dataSource"
+  class="answers-table"
+  matSort
+>
+  <ng-container matColumnDef="description">
+    <th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>
+      Question
+    </th>
+    <td class="cell" mat-cell *matCellDef="let element">
+      {{ element.description }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="value">
+    <th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>
+      Value
+    </th>
+    <td class="cell" mat-cell *matCellDef="let element">
+      {{ element.value }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="frequencyName">
+    <th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>
+      Frequency
+    </th>
+    <td class="cell" mat-cell *matCellDef="let element">
+      {{ element.frequencyName }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr class="row" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

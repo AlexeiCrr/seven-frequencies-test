@@ -1,0 +1,20 @@
+<div class="admin-page" *ngIf="isSignedIn">
+  <div class="admin-page-container">
+    <div class="admin-header">
+      <h2 class="admin-title">Quiz Responses</h2>
+      <div class="user-container">
+        <span class="user-name"
+          >Authorized as: <b>{{ authorizedUser.username }}</b></span
+        >
+        <button (click)="onSignOut()" mat-raised-button>Logout</button>
+      </div>
+    </div>
+    <div class="admin-table">
+      <app-responses-table
+        *ngIf="!isLoading && quizResponses.length"
+        [quizResponses]="quizResponses"
+      ></app-responses-table>
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </div>
+  </div>
+</div>

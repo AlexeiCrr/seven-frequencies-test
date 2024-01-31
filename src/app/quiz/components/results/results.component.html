@@ -1,0 +1,15 @@
+<div class="results">
+  <div class="results-bg"></div>
+  <div class="results-title">
+    Congratulations! <br /><br />
+    Your communication frequency results will be emailed to you!
+  </div>
+  <div class="results-content">
+    <div
+      *ngFor="let frequency of quizResponse?.frequencies; let i = index"
+      class="result-item"
+    >
+      {{ frequency.name }}: {{ frequency.value }} points
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.results {
+  width: 600px;
+  padding: 40px 80px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+}
+
+.results-title {
+  font-size: 18px;
+  font-family: Supply-Regular, sans-serif;
+  text-align: center;
+  position: relative;
+}
+
+.results-content {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.result-item {
+  font-family: Supply-Regular, sans-serif;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.results-bg {
+  position: absolute; 
+  display: block;
+  content: "";
+  top: 0;
+  left: -10px;
+  bottom: 0;
+  right: 0;
+  opacity: 0.2;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}

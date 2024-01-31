@@ -1,0 +1,123 @@
+<div class="response-page">
+  <div class="response-page-container">
+    <div class="back-button-container">
+      <button class="back-button" (click)="onBackClick()">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          class="back-button-icon"
+          fontIcon="arrow_back"
+        ></mat-icon>
+        Responses List
+      </button>
+      <div class="user-container">
+        <span class="user-name"
+          >Authorized as: <b>{{ authorizedUser.username }}</b></span
+        >
+        <button (click)="onSignOut()" mat-raised-button>Logout</button>
+      </div>
+    </div>
+    <ng-container *ngIf="!isLoading">
+      <div class="header">
+        <div class="user-data">
+          <div class="section-header">User Data</div>
+          <div class="user-data-list">
+            <div class="header-item">
+              First Name:
+              <span class="header-info">{{ quizResponse?.firstName }}</span>
+            </div>
+            <div class="header-item">
+              Last Name:
+              <span class="header-info">{{ quizResponse?.lastName }}</span>
+            </div>
+            <div class="header-item">
+              Email: <span class="header-info">{{ quizResponse?.email }}</span>
+            </div>
+            <div class="header-item">
+              Phone Number:
+              <span class="header-info">{{
+                quizResponse?.phoneNumber | mask : phoneNumberMask
+              }}</span>
+            </div>
+            <div class="header-item">
+              Address:
+              <span class="header-info">{{ quizResponse?.address }}</span>
+            </div>
+            <div class="header-item">
+              City:
+              <span class="header-info">{{ quizResponse?.city }}</span>
+            </div>
+            <div class="header-item">
+              State:
+              <span class="header-info">{{ quizResponse?.state }}</span>
+            </div>
+            <div class="header-item">
+              Country:
+              <span class="header-info">{{ quizResponse?.country }}</span>
+            </div>
+            <div class="header-item">
+              Zip:
+              <span class="header-info">{{ quizResponse?.zip }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="user-frequencies">
+          <div class="section-header">Frequencies</div>
+          <div class="frequencies-table">
+            <div class="frequencies-item">
+              <div class="frequencies-key">Maven</div>
+              <div class="frequencies-value">
+                {{ quizResponse?.frequencies["Maven"] }}
+              </div>
+            </div>
+            <div class="frequencies-item">
+              <div class="frequencies-key">Challenger</div>
+              <div class="frequencies-value">
+                {{ quizResponse?.frequencies["Challenger"] }}
+              </div>
+            </div>
+            <div class="frequencies-item">
+              <div class="frequencies-key">Commander</div>
+              <div class="frequencies-value">
+                {{ quizResponse?.frequencies["Commander"] }}
+              </div>
+            </div>
+            <div class="frequencies-item">
+              <div class="frequencies-key">Motivator</div>
+              <div class="frequencies-value">
+                {{ quizResponse?.frequencies["Motivator"] }}
+              </div>
+            </div>
+            <div class="frequencies-item">
+              <div class="frequencies-key">Seer</div>
+              <div class="frequencies-value">
+                {{ quizResponse?.frequencies["Seer"] }}
+              </div>
+            </div>
+            <div class="frequencies-item">
+              <div class="frequencies-key">Professor</div>
+              <div class="frequencies-value">
+                {{ quizResponse?.frequencies["Professor"] }}
+              </div>
+            </div>
+            <div class="frequencies-item">
+              <div class="frequencies-key">Healer</div>
+              <div class="frequencies-value">
+                {{ quizResponse?.frequencies["Healer"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-answers">
+        <div class="section-header">Answers</div>
+        <app-answers-table
+          class="answers-table"
+          [answers]="quizResponse?.answers || []"
+        ></app-answers-table>
+      </div>
+    </ng-container>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
+</div>

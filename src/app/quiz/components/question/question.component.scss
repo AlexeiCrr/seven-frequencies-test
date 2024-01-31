@@ -1,0 +1,70 @@
+@import 'variables.scss';
+
+.question {
+  margin-top: 40px;
+  width: 600px;
+  padding: 40px 80px;
+  background-color: #fff;
+  border-radius: 10px;
+
+  @media (max-width: $mobile-width) {
+    width: 100%;
+    max-width: 100vw;
+    padding: 40px;
+  }
+}
+
+.question-title {
+  font-size: 18px;
+  font-family: Supply-Regular, sans-serif;
+  text-align: center;
+  min-height: 60px;
+}
+
+.question-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  text-align: center;
+  color: #797979;
+  padding-top: 2px;
+}
+
+.question-options {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.question-options-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.question-button-container {
+  font-family: Supply-Regular, sans-serif;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+::ng-deep .mat-button-toggle {
+  width: 50px !important;
+}
+
+
+::ng-deep .mdc-button {
+  font-family: Supply-Regular, sans-serif;
+  width: 100px;
+  height: 40px;
+}
+
+.next-button {
+  color: #fff !important;
+}
+
+::ng-deep .mat-button-toggle-checked {
+  background-color: #85ADDD !important;
+}

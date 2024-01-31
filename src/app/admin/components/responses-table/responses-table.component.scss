@@ -1,0 +1,76 @@
+@import 'variables.scss';
+
+:host {
+  width: 100%;
+  overflow: scroll;
+}
+
+.responses-table {
+  padding: 10px 20px;
+
+  @media (max-width: $mobile-width) {
+    margin-top: 20px;
+  }
+}
+
+.search-form {
+  padding: 10px 0;
+  display: flex;
+  align-items: flex-start;
+
+
+  @media (max-width: $mobile-width) {
+    flex-direction: column;
+  }
+}
+
+.reset-button {
+  color: #fff !important;
+  margin-right: 20px;
+}
+
+.responses-table ::ng-deep .header-cell .mat-sort-header-content {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.header-cell,
+.cell {
+  text-align: center;
+  border-bottom: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  padding: 0 5px !important;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &--frequency {
+    width: 80px;
+  }
+}
+
+.cell {
+  word-break: break-word;
+}
+
+.row {
+  cursor: pointer;
+  transition: all ease 0.2s;
+
+  &:hover {
+    background-color: #d4e9fa !important;
+  }
+}
+
+mat-form-field {
+  margin-right: 20px;
+}
+
+.no-data {
+  font-size: 16px;
+  font-weight: 300;
+  margin-left: 10px;
+  margin-top: 20px;
+}

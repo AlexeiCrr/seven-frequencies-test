@@ -1,0 +1,108 @@
+<div class="greeting">
+  <div class="greeting-title">Please provide your data</div>
+  <form class="greeting-form" [formGroup]="form">
+    <mat-form-field class="input">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        [errorStateMatcher]="matcher"
+        placeholder="Ex. pat@example.com"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['email'].hasError('email') &&
+          !form.controls['email'].hasError('required')
+        "
+      >
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Phone Number</mat-label>
+      <input
+        matInput
+        formControlName="phoneNumber"
+        placeholder="111-111-1111"
+        [mask]="phoneNumberMask"
+        required
+      />
+      <mat-error *ngIf="form.controls['phoneNumber'].hasError('required')"
+        >Phone number is required</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Address Line 1</mat-label>
+      <input matInput formControlName="address1" />
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Address Line 2 (Optional)</mat-label>
+      <input matInput formControlName="address2" />
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>City</mat-label>
+      <input matInput formControlName="city" />
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Country</mat-label>
+      <mat-select formControlName="country">
+        <mat-option *ngFor="let country of Countries" [value]="country">{{
+          country
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="isStateVisible" class="input">
+      <mat-label>State</mat-label>
+      <mat-select formControlName="state">
+        <mat-option *ngFor="let state of UsStateCodes" [value]="state">{{
+          state
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Zip/Postal Code</mat-label>
+      <input matInput formControlName="zip" />
+    </mat-form-field>
+
+    <div class="greeting-button-container">
+      <mat-checkbox class="checkbox" formControlName="privacyPolicy">
+        I agree to the <a href="./" target="_blank">privacy policy</a>
+      </mat-checkbox>
+
+      <mat-checkbox class="checkbox" formControlName="hasSubscribed">
+        I agree to receive my quiz results via email provided in the form
+      </mat-checkbox>
+
+      <button
+        class="submit-button"
+        mat-raised-button
+        [disabled]="!form.valid"
+        color="primary"
+        (click)="onStartClick($event)"
+      >
+        Start Quiz
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,361 @@
+<style>
+  #questions {
+    background-color: rgb(255, 255, 255);
+  }
+  </style>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiple Choice Quiz</title>
+</head>
+<body>
+  <h1>Multiple Choice Quiz</h1>
+
+  <!-- This part will be generated using JSON -->
+  <div id="quiz">
+
+    <div id = user_info>
+      <form>
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" name="first-name" required>
+        
+        <br><br>
+        
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" name="last-name" required>
+        
+        <br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+      </form>
+    </div>
+
+    <div class="questions" id="questions">
+
+
+
+    </div>
+
+<script>
+// generate questions based on json
+
+var questions = {
+  "questions": [
+    {
+      "q_id": 1,
+      "q_desc": "What is the capital of France?",
+      "q_cat": "Geography"
+    },
+    {
+      "q_id": 2,
+      "q_desc": "Who painted the Mona Lisa?",
+      "q_cat": "Art"
+    },
+    {
+      "q_id": 3,
+      "q_desc": "What is the largest planet in our solar system?",
+      "q_cat": "Astronomy"
+    },
+    {
+      "q_id": 4,
+      "q_desc": "When was the Declaration of Independence signed?",
+      "q_cat": "History"
+    },
+    {
+      "q_id": 5,
+      "q_desc": "Is this a new question?",
+      "q_cat": "Science"
+    },
+    {
+      "q_id": 6,
+      "q_desc": "Who wrote the novel 'Pride and Prejudice'?",
+      "q_cat": "Literature"
+    },
+    {
+      "q_id": 7,
+      "q_desc": "What is the highest mountain in the world?",
+      "q_cat": "Geography"
+    },
+    {
+      "q_id": 8,
+      "q_desc": "How many chromosomes do humans have?",
+      "q_cat": "Biology"
+    },
+    {
+      "q_id": 9,
+      "q_desc": "Who invented the telephone?",
+      "q_cat": "History"
+    },
+    {
+      "q_id": 10,
+      "q_desc": "What is the formula for the area of a circle?",
+      "q_cat": "Mathematics"
+    },
+    {
+      "q_id": 11,
+      "q_desc": "What is the capital of Australia?",
+      "q_cat": "Geography"
+    },
+    {
+      "q_id": 12,
+      "q_desc": "Who wrote the play 'Hamlet'?",
+      "q_cat": "Literature"
+    },
+    {
+      "q_id": 13,
+      "q_desc": "What is the chemical symbol for oxygen?",
+      "q_cat": "Science"
+    },
+    {
+      "q_id": 14,
+      "q_desc": "Who is the current President of the United States?",
+      "q_cat": "Politics"
+    }
+  ]
+};
+
+function shuffleQuestions(questions) {
+  var shuffledQuestions = JSON.parse(JSON.stringify(questions)); // Create a deep copy of the questions
+
+  // Fisher-Yates shuffle algorithm
+  for (var i = shuffledQuestions.questions.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = shuffledQuestions.questions[i];
+    shuffledQuestions.questions[i] = shuffledQuestions.questions[j];
+    shuffledQuestions.questions[j] = temp;
+  }
+
+  return shuffledQuestions;
+}
+
+// Usage example
+var questions = shuffleQuestions(questions);
+
+for (var i = 0; i < questions.questions.length; i++) {
+  var question = questions.questions[i];
+
+  var questionDiv = document.createElement("div");
+  questionDiv.id = "question" + question.q_id;
+
+  var questionText = document.createElement("p");
+  questionText.textContent = "Question " + parseInt(i+1) + ": " + question.q_desc;
+  questionDiv.appendChild(questionText);
+
+  for (var j = 1; j <= 5; j++) {
+    var radioInput = document.createElement("input");
+    radioInput.type = "radio";
+    radioInput.name = "question" + question.q_id;
+    radioInput.value = j;
+
+    var radioLabel = document.createElement("label");
+    radioLabel.textContent = j;
+
+    questionDiv.appendChild(radioInput);
+    questionDiv.appendChild(radioLabel);
+  }
+
+  document.getElementById('questions').appendChild(questionDiv)
+}
+
+
+</script>
+
+
+
+    
+    <button id = "submit_button" onclick="sendDataToAPI()">Send Data to API</button>
+    <div id="summary">The Summary will be here</div>
+  </div>
+
+  <script>
+    
+    function sendDataToAPI() {
+
+
+      // calculate the subtotals
+        var frequency1 = 0;
+        var frequency2 = 0;
+        var frequency3 = 0;
+        var frequency4 = 0;
+        var frequency5 = 0;
+        var frequency6 = 0;
+        var frequency7 = 0;
+
+      // get values for each question
+        var question1 = document.querySelector("#question1 input[type='radio']:checked").value;
+        var question2 = document.querySelector("#question2 input[type='radio']:checked").value;
+        var question3 = document.querySelector("#question3 input[type='radio']:checked").value;
+        var question4 = document.querySelector("#question4 input[type='radio']:checked").value;
+        var question5 = document.querySelector("#question5 input[type='radio']:checked").value;
+        var question6 = document.querySelector("#question6 input[type='radio']:checked").value;
+        var question7 = document.querySelector("#question7 input[type='radio']:checked").value;
+        var question8 = document.querySelector("#question8 input[type='radio']:checked").value;
+        var question9 = document.querySelector("#question9 input[type='radio']:checked").value;
+        var question10 = document.querySelector("#question10 input[type='radio']:checked").value;
+        var question11 = document.querySelector("#question11 input[type='radio']:checked").value;
+        var question12 = document.querySelector("#question12 input[type='radio']:checked").value;
+        var question13 = document.querySelector("#question13 input[type='radio']:checked").value;
+        var question14 = document.querySelector("#question14 input[type='radio']:checked").value;
+
+      // get user info
+      var firstName = document.getElementById("first-name").value;
+      var lastName = document.getElementById("last-name").value;
+      var email = document.getElementById("email").value;
+      
+      // calculate the frequencies
+        var frequency1 = parseInt(question1) + 
+                          parseInt(question2)
+        var frequency2 = parseInt(question3) + 
+                          parseInt(question4)
+        var frequency3 = parseInt(question5) + 
+                          parseInt(question6)
+        var frequency4 = parseInt(question7) + 
+                          parseInt(question8)
+        var frequency5 = parseInt(question9) + 
+                          parseInt(question10)
+        var frequency6 = parseInt(question11) + 
+                          parseInt(question12)
+        var frequency7 = parseInt(question13) + 
+                          parseInt(question14)
+
+      //sort the frequencies and generate a summary
+      function sortFrequenciesByFScore(frequencies) {
+        // Create a copy of the frequencies object
+        var sortedFrequencies = JSON.parse(JSON.stringify(frequencies));
+
+        // Sort the frequencies array based on f_score in descending order
+        sortedFrequencies.frequencies.sort(function(a, b) {
+          return b.f_score - a.f_score;
+        });
+
+        return sortedFrequencies;
+         }
+      var frequencies = {
+            "frequencies": [
+              {
+                "f_id": 1,
+                "f_name": "The Maven", 
+                "f_desc": "The Maven frequency bring clarity and creates a pardigm shifts!",
+                "f_score": 0
+              },
+              {
+                "f_id": 2,
+                "f_name": "Frequency2", 
+                "f_desc": "You are a wonderfule person!",
+                "f_score": 0
+              },
+              {
+                "f_id": 3,
+                "f_name": "Frequency3", 
+                "f_desc": "You are a wonderfule person!",
+                "f_score": 0
+              },
+              {
+                "f_id": 4,
+                "f_name": "Frequency4", 
+                "f_desc": "You are a wonderfule person!",
+                "f_score": 0
+              },
+              {
+                "f_id": 5,
+                "f_name": "Frequency5", 
+                "f_desc": "You are a wonderfule person!",
+                "f_score": 0
+              },
+              {
+                "f_id": 6,
+                "f_name": "Frequency6", 
+                "f_desc": "You are a wonderfule person!",
+                "f_score": 0
+              },
+              {
+                "f_id": 7,
+                "f_name": "Frequency7", 
+                "f_desc": "You are a wonderfule person!",
+                "f_score": 0
+              }
+            ]
+          };
+      //update the values in json
+      frequencies.frequencies[0].f_score = frequency1
+      frequencies.frequencies[1].f_score = frequency2
+      frequencies.frequencies[2].f_score = frequency3
+      frequencies.frequencies[3].f_score = frequency4
+      frequencies.frequencies[4].f_score = frequency5
+      frequencies.frequencies[5].f_score = frequency6
+      frequencies.frequencies[6].f_score = frequency7
+      
+   
+
+        // Usage example:
+        var frequencies = sortFrequenciesByFScore(frequencies);
+        console.log(frequencies);
+
+        for (var i = 0; i < 3; i++) {
+              var frequency = frequencies.frequencies[i];
+
+              var freqDiv = document.createElement("div");
+              freqDiv.id = "freq" + frequency.f_id;
+
+              var freqText = document.createElement("h2");
+              freqText.textContent = frequency.f_name +': '+ parseInt(frequency.f_score) + ":"
+              freqDiv.appendChild(freqText);
+
+              var freqText2 = document.createElement("p");
+              freqText2.textContent = frequency.f_desc;
+              freqDiv.appendChild(freqText2);
+
+              document.getElementById('summary').appendChild(freqDiv)
+        }
+        
+                  
+
+    
+      
+      var apiEndpoint = "https://rvmhk7zlr3zm7ysnxtqgkuxvga0hvfbw.lambda-url.us-west-1.on.aws/";
+      var queryParams = "?f1=" + frequency1 +
+                        "&f2=" + frequency2 +
+                        "&f3=" + frequency3 +
+                        "&f4=" + frequency4 +
+                        "&f5=" + frequency5 +
+                        "&f6=" + frequency6 +
+                        "&f7=" + frequency7 +
+
+
+                        "&q1=" + question1 +
+                        "&q2=" + question2 +
+                        "&q3=" + question3 +
+                        "&q4=" + question4 +
+                        "&q5=" + question5 +
+                        "&q6=" + question6 +
+                        "&q7=" + question7 +
+                        "&q8=" + question8 +
+                        "&q9=" + question9 +
+                        "&q10=" + question10 +
+                        "&q11=" + question11 +
+                        "&q12=" + question12 +
+                        "&q13=" + question13 +
+                        "&q14=" + question14 +
+
+                        "&fn=" + firstName +
+                        "&ln=" + lastName +
+                        "&em=" + email
+
+      // Append query parameters for other categories and subtotals
+      
+      // Send data to API endpoint using a GET request
+      fetch(apiEndpoint + queryParams)
+        .then(response => response.json())
+        .then(result => {
+          alert(result); // Handle the API response
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    }
+  </script>
+</body>
+</html>
