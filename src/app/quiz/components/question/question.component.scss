@@ -2,10 +2,13 @@
 
 .question {
   margin-top: 40px;
-  width: 600px;
-  padding: 40px 80px;
+  width: 630px;
   background-color: #fff;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, -50%);
   border-radius: 10px;
+  position: absolute;
 
   @media (max-width: $mobile-width) {
     width: 100%;
@@ -15,26 +18,53 @@
 }
 
 .question-title {
-  font-size: 18px;
-  font-family: Supply-Regular, sans-serif;
+  font-size: 24px;
+  line-height:33px;
+  font-family: Benzin-Bold, sans-serif;
   text-align: center;
+  text-transform: uppercase;
   min-height: 60px;
 }
 
 .question-hint {
+  font-family: 'Belgrano' ,serif;
+  font-size: 12px;
+  line-height: 19px;
+  color: #797979;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
   text-align: center;
-  color: #797979;
   padding-top: 2px;
+}
+.questions-counter {
+  font-family: Benzin-medium, sans-serif;
+  color : #74807E;
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: 4px;
 }
 
 .question-options {
   margin-top: 40px;
   display: flex;
   justify-content: center;
+  border-radius: 0!important;
+}
+.question-buttons {
+  margin: 0 24px;
+  display: flex;
+  border: none!important;
+  border-radius:0;
+
+}
+.question-button {
+  border: solid 1px #e0e0e0;
+
+  &:not(:last-of-type) {
+    margin-right: 32px;
+  }
+
 }
 
 .question-options-group {
@@ -47,11 +77,27 @@
   margin-top: 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+}
+.next-button {
+  font-family: 'Benzin-Medium', sans-serif;
+  border-radius: 0;
+  text-transform: uppercase;
+  width: 140px;
+  height: 40px;
+  &:not(:disabled) {
+
+    background-color: #212121;
+  }
 }
 
 ::ng-deep .mat-button-toggle {
   width: 50px !important;
+  height: 50px !important;
+}
+::ng-deep .mat-button-toggle-label-content {
+  font-family: 'Benzin-Medium', sans-serif;
+  font-size: 16px;
 }
 
 
@@ -67,4 +113,7 @@
 
 ::ng-deep .mat-button-toggle-checked {
   background-color: #85ADDD !important;
+  .mat-button-toggle-label-content {
+    color: #fff !important;
+  }
 }

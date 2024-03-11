@@ -9,9 +9,10 @@ import {
 import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
+import { CreateQuizResponseStartAction } from '../../actions/quiz.actions';
+import { Answer } from '../../interfaces/answer';
 import { GreetingFormData } from '../../interfaces/greeting';
 import { NextQuestionData, Question } from '../../interfaces/question';
-import { Answer } from '../../interfaces/answer';
 import { QuizResponseCreate } from '../../interfaces/quizResponse';
 import { QuizState } from '../../reducers/quiz.reducer';
 import {
@@ -22,7 +23,6 @@ import {
   selectQuizResponseError,
   selectQuizResponseLoading,
 } from '../../selectors/quiz.selectors';
-import { CreateQuizResponseStartAction } from '../../actions/quiz.actions';
 
 @Component({
   selector: 'app-quiz-home',
@@ -34,15 +34,18 @@ import { CreateQuizResponseStartAction } from '../../actions/quiz.actions';
       transition(':leave', [
         style({
           position: 'absolute',
-          width: '600px',
-          top: 'calc(50% - 125px)',
-          left: 'calc(50% - 300px)',
+          // width: '600px',
+          // top: 'calc(50% - 147px)',
+          // left: 'calc(50% - 315px)',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 2,
         }),
         animate(
           '300ms',
           style({
             opacity: 0,
-            transform: 'translateY(-100%) rotate(45deg)',
           })
         ),
       ]),
@@ -56,7 +59,7 @@ export class QuizHomeComponent implements OnInit {
   public progressValue: number = 0;
   public answers: Answer[] = [];
   public quizResponse: QuizResponseCreate | null = null;
-
+  public showForm: boolean = false;
   public isStarted: boolean = false;
   public isFinished: boolean = false;
   public isLoading: boolean = false;
@@ -142,6 +145,10 @@ export class QuizHomeComponent implements OnInit {
         })
       );
     }
+  }
+
+  public onShowForm(): void {
+    this.showForm = true;
   }
 
   public onStartClick(greetingFormData: GreetingFormData): void {

@@ -9,4 +9,10 @@ import { QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
 })
 export class ResultsComponent {
   @Input() public quizResponse: QuizResponse | null = null;
+
+  public handleJoin() {
+    console.log('Join');
+  }
 }
+
+

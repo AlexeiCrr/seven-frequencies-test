@@ -1,7 +1,17 @@
 <div class="quiz">
-  <div *ngIf="!isStarted" class="quiz-header">
+  <div *ngIf="!isStarted && !showForm" class="quiz-header">
+    <div class="frequency-icon">
+      <img src="../../../../assets/frequency-icon.svg" alt="Frequency Icon">
+    </div>
+
     <h2 class="quiz-title">Find Your Primary Frequency</h2>
     <h3 class="quiz-subtitle">THE 7 FREQUENCIES OF COMMUNICATION</h3>
+    <button
+    class="start-quiz-button"
+    mat-raised-button
+    color="primary"
+    (click)="onShowForm()"
+    >let's Start the Quiz</button>
   </div>
   <div class="quiz-container" *ngIf="!isLoading">
     <div *ngFor="let question of questions; let i = index">
@@ -15,9 +25,10 @@
       ></app-question>
     </div>
 
-    <div *ngIf="!isStarted" [@moveAndDisappear]>
+    <div *ngIf="showForm && !isStarted" [@moveAndDisappear]>
       <app-greeting (startClick)="onStartClick($event)"></app-greeting>
     </div>
+
 
     <div *ngIf="isFinished">
       <app-results [quizResponse]="quizResponse"></app-results>

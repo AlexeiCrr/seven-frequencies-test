@@ -5,6 +5,10 @@
   padding: 40px 60px;
   background-color: #fff;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   @media (max-width: $mobile-width) {
     width: 100%;
@@ -13,23 +17,36 @@
 }
 
 .greeting-title {
-  font-size: 18px;
-  font-family: Supply-Regular, sans-serif;
   text-align: center;
+  font-size: 24px;
+  line-height:33px;
+  font-family: Benzin-Bold, sans-serif;
+  text-transform: uppercase;
+  max-width: 350px;
+text-align: center;
 }
 
 .greeting-form {
   margin-top: 40px;
+  margin: 40px auto 0;
   display: flex;
   flex-wrap: wrap;
+  max-width: 350px;
+}
+
+
+::ng-deep .mdc-notched-outline__leading {
+  border-color: #F1F1F1 !important;
+}
+::ng-deep .mdc-notched-outline__notch {
+  border-color: #F1F1F1 !important;
+}
+::ng-deep .mdc-notched-outline__trailing {
+  border-color: #F1F1F1 !important;
 }
 
 .input {
-  width: 47.5%;
-
-  &:nth-child(2n-1) {
-    margin-right: 5%;
-  }
+  width: 100%;
 
   @media (max-width: $mobile-width) {
     width: 100%;
@@ -72,6 +89,10 @@
 
 ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark {
   color: #fff !important;
+}
+
+.frequency-icon {
+  margin-bottom: 24px;
 }
 
 ::ng-deep .mat-accent {

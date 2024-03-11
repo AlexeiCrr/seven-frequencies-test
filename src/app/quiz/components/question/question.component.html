@@ -1,22 +1,20 @@
 <div class="question">
+  <div class="questions-counter">{{ questionIndex + 1 }} <span class="separator">/</span> {{ totalQuestions }}</div>
+
   <div class="question-title">{{ question.description }}</div>
   <form class="question-options" [formGroup]="form">
     <span class="question-hint">Strongly disagree</span>
     <mat-button-toggle-group
       aria-label="Select an option"
       formControlName="selectedOption"
+      class="question-buttons"
     >
-      <mat-button-toggle [value]="1">1</mat-button-toggle>
-      <mat-button-toggle [value]="2">2</mat-button-toggle>
-      <mat-button-toggle [value]="3">3</mat-button-toggle>
-      <mat-button-toggle [value]="4">4</mat-button-toggle>
-      <mat-button-toggle [value]="5">5</mat-button-toggle>
+    <mat-button-toggle class="question-button" *ngFor="let number of numbers" [value]="number">{{ number }}</mat-button-toggle>
     </mat-button-toggle-group>
     <span class="question-hint">Strongly agree</span>
   </form>
 
   <div class="question-button-container">
-    <span>{{ questionIndex + 1 }} / {{ totalQuestions }}</span>
     <button
       class="next-button"
       mat-raised-button

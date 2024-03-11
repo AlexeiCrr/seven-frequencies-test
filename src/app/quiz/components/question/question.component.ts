@@ -27,6 +27,7 @@ export class QuestionComponent {
     new EventEmitter();
 
   public form: FormGroup;
+  public numbers = [1, 2, 3, 4, 5];
 
   public constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
