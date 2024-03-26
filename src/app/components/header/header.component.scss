@@ -11,7 +11,7 @@
 .header-container {
   width: 100%;
   max-width: 1280px;
-  padding: 0 90px;
+  padding: 0 30px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -52,28 +52,38 @@
   font-size: 12px;
   line-height: 12px;
   font-weight: light;
-  margin-right: 50px;
+  margin: 0 40px;
+  text-transform: uppercase;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: Supply-Regular, sans-serif;
+  font-family : 'Benzin-medium', sans-serif;
   text-decoration: none;
   color: #000;
-  max-width: 150px;
 
   &:last-child {
     margin-right: 0;
   }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:hover {
+    opacity: 0.7;
+
+  }
+
 }
 
-.action-container {
-  margin-right: 15px;
-  width: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+// .action-container {
+//   margin-right: 15px;
+//   width: 60px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
 
 .action-link {
   font-family: Maple-Bold, serif;
@@ -87,4 +97,22 @@
   &:hover {
     opacity: 0.5;
   }
+}
+
+.personal-test-button {
+  font-family: 'Benzin-Medium', sans-serif;
+  border-radius: 0;
+  text-transform: uppercase;
+  height: 40px;
+  &:not(:disabled) {
+
+    background-color: #212121;
+  }
+}
+
+
+
+.personal-test-button {
+  color: #fff !important;
+  font-size: 12px;
 }

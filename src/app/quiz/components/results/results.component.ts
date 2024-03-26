@@ -11,7 +11,7 @@ export class ResultsComponent {
   @Input() public quizResponse: QuizResponse | null = null;
 
   public handleJoin() {
-    console.log('Join');
+    window.open('https://www.erwinmcmanus.com/thearena', '_blank');
   }
 }
 
