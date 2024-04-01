@@ -106,6 +106,7 @@ export class QuizHomeComponent implements OnInit {
       this.quizStore.pipe(select(selectQuizResponse)).subscribe((response) => {
         this.quizResponse = response;
         this.cdr.markForCheck();
+        console.trace('Quiz Response:', this.quizResponse);
       })
     );
     this.subscriptions.add(

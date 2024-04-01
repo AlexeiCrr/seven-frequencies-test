@@ -13,7 +13,7 @@
   @media (max-width: $mobile-width) {
     width: auto;
     max-width: 100vw;
-    padding: 40px;
+    padding: 15px;
   }
 }
 
@@ -71,7 +71,6 @@
 
   @media (max-width: $mobile-width) {
     position: relative;
-    // margin-top: 60px;
   }
 }
 .question-buttons {
@@ -79,7 +78,12 @@
   display: flex;
   border: none!important;
   border-radius:0;
-
+  @media (max-width: $mobile-width) {
+    margin: 0 18px;
+  }
+  @media (max-width: $xs-width) {
+    margin: 0 12px;
+  }
 }
 .question-button {
   border: solid 1px #e0e0e0;
@@ -91,6 +95,11 @@
   @media (max-width: $mobile-width) {
     &:not(:last-of-type) {
       margin-right: 20px;
+    }
+  }
+  @media (max-width: $xs-width) {
+    &:not(:last-of-type) {
+      margin-right: 12px;
     }
   }
 }

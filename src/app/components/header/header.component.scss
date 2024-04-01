@@ -77,13 +77,13 @@
 
 }
 
-// .action-container {
-//   margin-right: 15px;
-//   width: 60px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
+.action-container {
+  @media (max-width: $mobile-width) {
+    display: none;
+  }
+}
+
+
 
 .action-link {
   font-family: Maple-Bold, serif;

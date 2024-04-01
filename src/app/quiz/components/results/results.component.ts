@@ -14,5 +14,3 @@ export class ResultsComponent {
     window.open('https://www.erwinmcmanus.com/thearena', '_blank');
   }
 }
-
-
