@@ -9,8 +9,10 @@ export const environment = {
   cognito: {
     region: 'us-west-1',
     tokenScopes: ['openid', 'email', 'profile'],
-    redirectUriSignIn: 'https://d1wsg38c1645ja.cloudfront.net/admin',
-    redirectUriSignOut: 'https://d1wsg38c1645ja.cloudfront.net/admin',
+    redirectUriSignIn: 'https://d17qvu98sfvqdy.cloudfront.net/admin',
+    redirectUriSignOut: 'https://d17qvu98sfvqdy.cloudfront.net/admin',
+    // redirectUriSignIn: 'http://localhost:4200/admin',
+    // redirectUriSignOut: 'http://localhost:4200/admin',
     userPoolId: 'us-west-1_2sHchLZDR',
     identityPoolId: 'us-west-1:c34e7756-34ad-4005-bb7a-24176ca2cb2f',
     identityLogin: 'cognito-idp.us-west-1.amazonaws.com/us-west-1_2sHchLZDR',

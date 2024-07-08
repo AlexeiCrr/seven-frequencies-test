@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-responses-table',
@@ -72,6 +72,8 @@ export class ResponsesTableComponent {
 
   public applyFilter() {
     const stringSearchValue = this.searchForm.get('stringSearch').value;
+    console.log('stringSearchValue', stringSearchValue);
+    
     const dateSearchValue = this.retrieveDateFilterString(
       this.searchForm.get('dateSearch').value
     );
