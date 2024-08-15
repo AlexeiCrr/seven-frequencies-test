@@ -1,28 +1,48 @@
 <div class="question">
-  <div class="questions-counter">{{ questionIndex + 1 }} <span class="separator">/</span> {{ totalQuestions }}</div>
+	<div class="questions-counter">
+		{{ questionIndex + 1 }} <span class="separator">/</span> {{ totalQuestions }}
+	</div>
 
-  <div class="question-title">{{ question.description }}</div>
-  <form class="question-options" [formGroup]="form">
-    <span class="question-hint">Strongly disagree</span>
-    <mat-button-toggle-group
-      aria-label="Select an option"
-      formControlName="selectedOption"
-      class="question-buttons"
-    >
-    <mat-button-toggle class="question-button" *ngFor="let number of numbers" [value]="number">{{ number }}</mat-button-toggle>
-    </mat-button-toggle-group>
-    <span class="question-hint">Strongly agree</span>
-  </form>
+	<div class="question-title">{{ question.description }}</div>
+	<form class="question-options" [formGroup]="form">
+		<span class="question-hint"
+			>Strongly <br class="hide-desktop" />
+			disagree</span
+		>
+		<mat-button-toggle-group
+			aria-label="Select an option"
+			formControlName="selectedOption"
+			class="question-buttons"
+		>
+			<mat-button-toggle class="question-button" *ngFor="let number of numbers" [value]="number"
+				>{{ number }}</mat-button-toggle
+			>
+		</mat-button-toggle-group>
+		<span class="question-hint"
+			>Strongly<br class="hide-desktop" />
+			agree</span
+		>
+	</form>
 
-  <div class="question-button-container">
-    <button
-      class="next-button"
-      mat-raised-button
-      [disabled]="!form.dirty"
-      color="primary"
-      (click)="onNextClick()"
-    >
-      {{ questionIndex + 1 === totalQuestions ? "Finish" : "Next" }}
-    </button>
-  </div>
+	<div class="question-button-container">
+		<button
+			class="quiz-button prev-button"
+			mat-stroked-button
+			[disabled]="questionIndex === 0"
+			color="primary"
+			(click)="onPrevClick()"
+		>
+			Back
+		</button>
+
+		<button
+			class="quiz-button next-button"
+			mat-raised-button
+			[disabled]="!form.dirty"
+			color="primary"
+			(click)="onNextClick()"
+		>
+			{{ questionIndex + 1 === totalQuestions ? "Finish" : "Next" }}
+		</button>
+	</div>
 </div>

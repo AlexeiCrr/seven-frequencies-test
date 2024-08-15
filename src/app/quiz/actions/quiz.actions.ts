@@ -32,3 +32,18 @@ export const CreateQuizResponseFailureAction = createAction(
   '[Quiz] Create quiz response failure',
   props<{ error: string }>()
 );
+
+export const CheckLicenseCodeStartAction = createAction(
+  '[Quiz] Check License Code Start',
+  props<{ licenseCode: string }>()
+);
+
+export const CheckLicenseCodeSuccessAction = createAction(
+  '[Quiz] Check License Code Success',
+  props<{ isValid: boolean }>()
+);
+
+export const CheckLicenseCodeFailureAction = createAction(
+  '[Quiz] Check License Code Failure',
+  props<{ error: string }>()
+);

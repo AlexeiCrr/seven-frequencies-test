@@ -6,4 +6,5 @@ export interface GreetingFormData {
   jobTitle: string;
   company: string;
   hasSubscribed: boolean;
+  licenseCode: string;
 }

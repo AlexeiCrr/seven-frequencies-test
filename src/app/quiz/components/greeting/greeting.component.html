@@ -1,72 +1,78 @@
 <div class="greeting">
-  <div class="frequency-icon">
-    <img src="../../../../assets/frequency-icon.svg" alt="Frequency Icon">
-  </div>
-  <div class="greeting-title">Please Add Additional Data</div>
-  <form class="greeting-form" [formGroup]="form">
-    <mat-form-field class="input" appearance="outline">
-      <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName" />
-    </mat-form-field>
-    <mat-form-field class="input" appearance="outline">
-      <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName" />
-    </mat-form-field>
+	<div class="quiz-logo">7</div>
+	<div class="greeting-title">Please Add Additional Data</div>
+	<form class="greeting-form" [formGroup]="form">
+		<mat-form-field class="input" appearance="outline" style="margin-bottom: 16px">
+			<mat-label>Redeem License Code</mat-label>
+			<input matInput formControlName="licenseCode" />
+			<div class="progress-spinner" *ngIf="isCheckingLicense">
+				<mat-spinner></mat-spinner>
+			</div>
+			<mat-error *ngIf="!licenseValid"> This license code is invalid or already used. </mat-error>
 
-    <mat-form-field class="input" appearance="outline">
-      <mat-label>Email</mat-label>
-      <input
-        type="email"
-        matInput
-        formControlName="email"
-        [errorStateMatcher]="matcher"
-        placeholder="Ex. pat@example.com"
-      />
-      <mat-error
-        *ngIf="
+			<div class="license-checked-icon" *ngIf="licenseValid && !isCheckingLicense">
+				<mat-icon aria-hidden="false" aria-label="License check icon" fontIcon="check"></mat-icon>
+			</div>
+		</mat-form-field>
+		<mat-form-field class="input" appearance="outline">
+			<mat-label>First Name</mat-label>
+			<input matInput formControlName="firstName" />
+		</mat-form-field>
+		<mat-form-field class="input" appearance="outline">
+			<mat-label>Last Name</mat-label>
+			<input matInput formControlName="lastName" />
+		</mat-form-field>
+
+		<mat-form-field class="input" appearance="outline">
+			<mat-label>Email</mat-label>
+			<input
+				type="email"
+				matInput
+				formControlName="email"
+				[errorStateMatcher]="matcher"
+				placeholder="Ex. pat@example.com"
+			/>
+			<mat-error
+				*ngIf="
           form.controls['email'].hasError('email') &&
           !form.controls['email'].hasError('required')
         "
-      >
-        Please enter a valid email address
-      </mat-error>
-      <mat-error *ngIf="form.controls['email'].hasError('required')">
-        Email is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+			>
+				Please enter a valid email address
+			</mat-error>
+			<!-- <mat-error *ngIf="form.controls['email'].hasError('required')">
+				Email is <strong>required</strong>
+			</mat-error> -->
+		</mat-form-field>
 
-    <mat-form-field class="input" appearance="outline">
-      <mat-label>Address</mat-label>
-      <input matInput formControlName="address" />
-    </mat-form-field>
+		<mat-form-field class="input" appearance="outline">
+			<mat-label>Address</mat-label>
+			<input matInput formControlName="address" />
+		</mat-form-field>
 
-    <mat-form-field class="input" appearance="outline">
-      <mat-label>Job Title</mat-label>
-      <input matInput formControlName="jobTitle" />
-    </mat-form-field>
-    <mat-form-field class="input" appearance="outline">
-      <mat-label>Company</mat-label>
-      <input matInput formControlName="company" />
-    </mat-form-field>
+		<mat-form-field class="input" appearance="outline">
+			<mat-label>Job Title</mat-label>
+			<input matInput formControlName="jobTitle" />
+		</mat-form-field>
+		<mat-form-field class="input" appearance="outline">
+			<mat-label>Company</mat-label>
+			<input matInput formControlName="company" />
+		</mat-form-field>
 
-    <div class="greeting-button-container">
-      <!-- <mat-checkbox class="checkbox" formControlName="privacyPolicy">
-        I agree to the <a href="./" target="_blank">privacy policy</a>
-      </mat-checkbox> -->
+		<div class="greeting-button-container">
+			<mat-checkbox class="checkbox" formControlName="hasSubscribed">
+				I agree to receive my quiz results via email provided in the form
+			</mat-checkbox>
 
-      <mat-checkbox class="checkbox" formControlName="hasSubscribed">
-        I agree to receive my quiz results via email provided in the form
-      </mat-checkbox>
-
-      <button
-        class="submit-button"
-        mat-raised-button
-        [disabled]="!form.valid"
-        color="primary"
-        (click)="onStartClick($event)"
-      >
-        Start Quiz
-      </button>
-    </div>
-  </form>
+			<button
+				class="submit-button"
+				mat-raised-button
+				[disabled]="!form.valid || !licenseValid || isCheckingLicense"
+				color="primary"
+				(click)="onStartClick($event)"
+			>
+				Start Quiz
+			</button>
+		</div>
+	</form>
 </div>

@@ -1,31 +1,23 @@
 <div class="results">
-  <div class="results-bg"></div>
-  <div>
-    <div class="results-title">
-      Congratulations!
-    </div>
-    <div class="results-subtitle">
-      Your communication frequency results will be emailed to you!
-    </div>
-  </div>
-  <div class="results-content">
-    <div
-      *ngFor="let frequency of quizResponse?.frequencies; let i = index"
-      class="result-item"
-    >
-      <img class="result-icon" src="../../../../assets/{{frequency.name.toLowerCase()}}.svg" alt="'{{frequency.name}} icon'" />
-      <div class="result-count">{{ frequency.value }}</div>
-      <div class="result-name">{{ frequency.name }}</div>
-    </div>
-  </div>
-  <div class="join-button-container">
-    <button
-      class="join-button"
-      mat-raised-button
-      color="primary"
-      (click)="handleJoin()"
-    >
-    Join the arena
-    </button>
-  </div>
+	<div class="results-bg"></div>
+	<div>
+		<div class="results-title">Congratulations!</div>
+		<div class="results-subtitle">Your communication frequency results will be emailed to you!</div>
+	</div>
+	<div class="results-content">
+		<div *ngFor="let frequency of sortedFrequencies() ; let i = index" class="result-item">
+			<img
+				class="result-icon"
+				src="../../../../assets/{{frequency.name.toLowerCase()}}.png"
+				alt="'{{frequency.name}} icon'"
+			/>
+			<div class="result-count">{{ frequency.value }}</div>
+			<div class="result-name">{{ frequency.name }}</div>
+		</div>
+	</div>
+	<div class="join-button-container">
+		<button class="join-button" mat-raised-button color="primary" (click)="handleJoin()">
+			Join the arena
+		</button>
+	</div>
 </div>

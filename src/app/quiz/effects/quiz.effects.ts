@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
+import { LicenseService } from './../services/license.service';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { catchError, filter, map, of, switchMap } from 'rxjs';
 
+import { LicenseCheckResponse } from 'src/app/quiz/interfaces/license';
 import {
+  CheckLicenseCodeFailureAction,
+  CheckLicenseCodeStartAction,
+  CheckLicenseCodeSuccessAction,
   CreateQuizResponseFailureAction,
   CreateQuizResponseStartAction,
   CreateQuizResponseSuccessAction,
@@ -12,12 +17,12 @@ import {
   LoadQuestionsStartAction,
   LoadQuestionsSuccessAction,
 } from '../actions/quiz.actions';
-import { QuestionsService } from '../services/questions.service';
 import { Question } from '../interfaces/question';
 import {
   CreateQuizResponseParams,
   QuizResponseCreate,
 } from '../interfaces/quizResponse';
+import { QuestionsService } from '../services/questions.service';
 
 @Injectable()
 export class QuizEffects {
@@ -65,8 +70,25 @@ export class QuizEffects {
     )
   );
 
+  public checkLicenseCode$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CheckLicenseCodeStartAction),
+      switchMap((action) =>
+        this.licenseService.checkLicenseCode(action.licenseCode).pipe(
+          map((response: LicenseCheckResponse) =>
+            CheckLicenseCodeSuccessAction({ isValid: response.isValid })
+          ),
+          catchError((error) =>
+            of(CheckLicenseCodeFailureAction({ error: error.message }))
+          )
+        )
+      )
+    )
+  );
+
   public constructor(
     private readonly actions$: Actions,
-    private readonly questionsService: QuestionsService
+    private readonly questionsService: QuestionsService,
+    private readonly licenseService: LicenseService
   ) {}
 }

@@ -1,11 +1,11 @@
 export interface Question {
-  id: number;
-  description: string;
-  frequencyId: string;
+	id: number;
+	description: string;
+	frequencyId: string;
 }
 
-export interface NextQuestionData {
-  question: Question;
-  index: number;
-  value: number;
+export interface QuestionData {
+	question: Question;
+	index: number;
+	value: number;
 }

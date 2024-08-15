@@ -1,0 +1,19 @@
+@import 'variables.scss';
+
+.main-wrapper {
+	background-color: $off-white;
+	padding: 24px;
+
+	@media (max-width: $mobile-width) {
+		padding: 12px;
+	}
+}
+
+.main-wrapper__bg {
+	background-color: $green;
+	min-height: calc(100vh - 48px);
+
+	@media (max-width: $mobile-width) {
+		min-height: calc(100vh - 24px);
+	}
+}

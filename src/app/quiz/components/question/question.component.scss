@@ -1,146 +1,189 @@
 @import 'variables.scss';
 
 .question {
-  margin-top: 40px;
-  width: 630px;
-  background-color: #fff;
-  left: 50%;
-  top:50%;
-  transform: translate(-50%, -50%);
-  border-radius: 10px;
-  position: absolute;
+	margin-top: 40px;
+	width: 100%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 10px;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-  @media (max-width: $mobile-width) {
-    width: auto;
-    max-width: 100vw;
-    padding: 15px;
-  }
+	@media (max-width: $mobile-width) {
+		width: auto;
+		max-width: 100vw;
+		padding: 15px;
+		height: 70vh;
+	}
 }
 
 .question-title {
-  font-size: 24px;
-  line-height:33px;
-  font-family: Benzin-Bold, sans-serif;
-  text-align: center;
-  text-transform: uppercase;
-  min-height: 60px;
+	text-align: center;
+	text-transform: uppercase;
+	min-height: 60px;
+	font-family: $font-family;
+	font-size: 40px;
+	line-height: 42px;
+	text-align: center;
+	max-width: 700px;
+	text-align: center;
 
-  @media (max-width: $mobile-width) {
-    font-size:18px;
-    line-height: 24px;
-  }
+	@media (max-width: $mobile-width) {
+		font-size: 24px;
+		line-height: 28px;
+	}
+}
+
+.hide-desktop {
+	@media (min-width: $tablet-width) {
+		display: none;
+	}
 }
 
 .question-hint {
-  font-family: 'Belgrano' ,serif;
-  font-size: 12px;
-  line-height: 19px;
-  color: #797979;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding-top: 2px;
+	font-family: Helvetica, serif;
+	font-size: 22px;
+	line-height: 14px;
+	color: $gray-light;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding-top: 2px;
+	text-transform: uppercase;
 
-  @media (max-width: $mobile-width) {
-    position: absolute;
-    bottom: -35px;
+	@media (max-width: $desktop-width) {
+		font-size: 16px;
+		line-height: 16px;
+	}
 
-    &:first-child {
-      left: 0;
+	@media (max-width: $mobile-width) {
+		position: absolute;
+		bottom: -55px;
+		font-size: 12px;
+		line-height: 14px;
+		word-break: break-all;
 
-    }
-    &:last-child {
-      right: 0;
-    }
-  }
+		&:first-child {
+			left: 10px;
+		}
+		&:last-child {
+			right: 10px;
+		}
+	}
 }
 .questions-counter {
-  font-family: Benzin-medium, sans-serif;
-  color : #74807E;
-  text-align: center;
-  margin-bottom: 32px;
-  letter-spacing: 4px;
+	font-family: Helvetica, sans-serif;
+	color: $gray;
+	text-align: center;
+	margin-bottom: 32px;
+	font-size: 21px;
+	line-height: 42px;
+
+	@media (max-width: $mobile-width) {
+		font-size: 12px;
+		line-height: 14px;
+		margin-top: auto;
+	}
 }
 
 .question-options {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  border-radius: 0!important;
+	margin-top: 40px;
+	display: flex;
+	justify-content: center;
+	border-radius: 0 !important;
 
-  @media (max-width: $mobile-width) {
-    position: relative;
-  }
+	@media (max-width: $mobile-width) {
+		position: relative;
+		margin-bottom: auto;
+	}
 }
 .question-buttons {
-  margin: 0 24px;
-  display: flex;
-  border: none!important;
-  border-radius:0;
-  @media (max-width: $mobile-width) {
-    margin: 0 18px;
-  }
-  @media (max-width: $xs-width) {
-    margin: 0 12px;
-  }
+	margin: 0 24px;
+	display: flex;
+	border: none !important;
+	border-radius: 0;
+
+	@media (max-width: $mobile-width) {
+		margin: 0 18px;
+	}
+	@media (max-width: $xs-width) {
+		margin: 0 12px;
+	}
 }
 .question-button {
-  border: solid 1px #e0e0e0;
+	border: solid 1px #e0e0e0;
+	background-color: $beige;
 
-  &:not(:last-of-type) {
-    margin-right: 32px;
-  }
+	&:not(:last-of-type) {
+		margin-right: 32px;
+	}
 
-  @media (max-width: $mobile-width) {
-    &:not(:last-of-type) {
-      margin-right: 20px;
-    }
-  }
-  @media (max-width: $xs-width) {
-    &:not(:last-of-type) {
-      margin-right: 12px;
-    }
-  }
+	@media (max-width: $mobile-width) {
+		&:not(:last-of-type) {
+			margin-right: 30px;
+		}
+	}
+	@media (max-width: $xs-width) {
+		&:not(:last-of-type) {
+			margin-right: 12px;
+		}
+	}
 }
 
 .question-options-group {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .question-button-container {
-  font-family: Supply-Regular, sans-serif;
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	font-family: $font-family;
+	margin-top: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-  @media (max-width: $mobile-width) {
-    margin-top: 70px;
-  }
+	@media (max-width: $mobile-width) {
+		margin-top: 70px;
+	}
 }
-.next-button {
-  font-family: 'Benzin-Medium', sans-serif;
-  border-radius: 0;
-  text-transform: uppercase;
-  width: 140px;
-  height: 40px;
-  &:not(:disabled) {
 
-    background-color: #212121;
-  }
+::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+	padding: 0 24px !important;
+	line-height: 65px;
+
+	@media (max-width: $mobile-width) {
+		padding: 0 16px !important;
+		line-height: 50px;
+	}
+}
+
+.quiz-button {
+	font-family: $font-family;
+	border-radius: 0;
+	text-transform: uppercase;
+	width: 130px;
+	height: 50px;
+	font-size: 16px;
 }
 
 ::ng-deep .mat-button-toggle {
-  width: 50px !important;
-  height: 50px !important;
+	width: 65px !important;
+	height: 65px !important;
+
+	@media (max-width: $mobile-width) {
+		width: 50px !important;
+		height: 50px !important;
+	}
 }
 ::ng-deep .mat-button-toggle-label-content {
-  font-family: 'Benzin-Medium', sans-serif;
-  font-size: 16px;
+	font-family: $font-family;
+	font-size: 16px;
 }
-
 
 // ::ng-deep .mdc-button {
 //   font-family: Supply-Regular, sans-serif;
@@ -149,12 +192,22 @@
 // }
 
 .next-button {
-  color: #fff !important;
+	color: $off-white !important;
+
+	&:not(:disabled) {
+		background-color: #5e6153;
+	}
+}
+
+.prev-button {
+	margin-right: 18px;
+	&:not(:disabled) {
+		border-color: #5e6153;
+		color: #5e6153;
+	}
 }
 
 ::ng-deep .mat-button-toggle-checked {
-  background-color: #85ADDD !important;
-  .mat-button-toggle-label-content {
-    color: #fff !important;
-  }
+	background-color: transparent !important;
+	border-color: #5e6153 !important;
 }

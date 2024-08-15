@@ -1,15 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'fonts.scss';
 @import 'material.scss';
+@import 'variables.scss';
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-html, body { height: 100%; }
+html,
 body {
-  margin: 0;
-  background-color: #fff;
+	height: 100%;
+	font-family: Pompei-Pro, 'serif';
+}
+body {
+	margin: 0;
+	background-color: #f3f0e8;
 }
 
 h1,
@@ -20,13 +25,13 @@ h5,
 h6,
 ul,
 p {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 ul,
 li {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
 }

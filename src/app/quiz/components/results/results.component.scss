@@ -1,85 +1,110 @@
+@import 'variables.scss';
+
 .results {
-  width: 600px;
-  padding: 40px ;
-  background-color: #fff;
-  border-radius: 10px;
-  position: relative;
+	position: relative;
+	background-color: $off-white;
+	padding: 0 12px;
 }
 
 .results-title {
-  font-family:Benzin-Medium, sans-serif;
-  text-transform: uppercase;
-  font-size: 16px;
-  text-align: center;
-  position: relative;
-  margin-bottom: 10px;
+	font-family: $font-family;
+	line-height: 60px;
+	text-transform: uppercase;
+	font-size: 51px;
+
+	text-align: center;
+	position: relative;
+	margin-bottom: 10px;
+
+	@media (max-width: $mobile-width) {
+		margin-bottom: 8px;
+		font-size: 32px;
+		line-height: 38px;
+	}
 }
 
 .results-subtitle {
-  font-family: 'Belgrano' ,serif;
-  font-size: 14px;
-  color: #74807E;
-  text-align: center;
-  margin-bottom: 90px;
+	font-family: $font-secondary;
+	text-transform: uppercase;
+	font-size: 14px;
+	line-height: 16px;
+	color: $green;
+	text-align: center;
+	margin-bottom: 70px;
+
+	@media (max-width: $mobile-width) {
+		font-size: 12px;
+		margin-bottom: 40px;
+	}
 }
 
 .results-content {
-  margin-top: 20px;
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
+	margin-top: 20px;
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	gap: 110px;
+
+	@media (max-width: $mobile-width) {
+		flex-direction: column;
+		gap: 35px;
+		margin-top: 0;
+	}
+}
+
+.result-name {
+	font-family: $font-family;
+	font-size: 20px;
+	text-transform: uppercase;
+	color: $green;
 }
 
 .result-item {
-  font-family: Supply-Regular, sans-serif;
-  margin-top: 20px;
-  width: 100%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	margin-top: 20px;
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	@media (max-width: $mobile-width) {
+		margin-top: 0;
+	}
 }
 
 .result-icon {
-  margin-bottom: 15px;
+	margin-bottom: 10px;
 }
 .result-count {
-  font-family : 'Benzin-Bold', sans-serif;
-  font-size: 56px;
-  line-height: 1.2;
+	font-family: $font-family;
+	color: $green;
+	line-height: 38px;
+	font-size: 32px;
+	margin-bottom: 10px;
 }
-
 
 .join-button-container {
-  font-family: Supply-Regular, sans-serif;
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 100px;
+	font-family: Supply-Regular, sans-serif;
+	margin-top: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 100px;
+
+	@media (max-width: $mobile-width) {
+		margin-top: 36px;
+	}
 }
 .join-button {
-  font-family: 'Benzin-Medium', sans-serif;
-  border-radius: 0;
-  text-transform: uppercase;
-  height: 40px;
-  color: #fff;
-  font-size: 12px;
-  width: auto;
-  background-color: #212121;
-}
-
-.results-bg {
-  position: absolute; 
-  display: block;
-  content: "";
-  top: 0;
-  left: -10px;
-  bottom: 0;
-  right: 0;
-  opacity: 0.2;
-  margin: auto;
-  width: 100%;
-  height: 100%;
+	font-family: $font-family;
+	padding-left: 32px;
+	padding-right: 32px;
+	border-radius: 2px;
+	text-transform: uppercase;
+	height: 40px;
+	color: #fff;
+	font-size: 12px;
+	width: auto;
+	background-color: $green;
 }

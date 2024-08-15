@@ -1,28 +1,43 @@
 @font-face {
-  font-family: 'Supply-Regular';
-  src: url('../fonts/Supply-Regular.woff2') format('woff2'),
-    url('../fonts/Supply-Regular.otf') format('otf');
+	font-family: 'Supply-Regular';
+	src:
+		url('../fonts/Supply-Regular.woff2') format('woff2'),
+		url('../fonts/Supply-Regular.otf') format('otf');
 }
 
 @font-face {
-  font-family: 'Maple-Bold';
-  src: url('../fonts/Maple-Bold.woff2') format('woff2'),
-    url('../fonts/Maple-Bold.otf') format('otf');
+	font-family: 'Maple-Bold';
+	src:
+		url('../fonts/Maple-Bold.woff2') format('woff2'),
+		url('../fonts/Maple-Bold.otf') format('otf');
 }
 
 @font-face {
-  font-family: 'Benzin-Bold';
-  src: url('../fonts/Benzin-Bold.woff2') format('woff2'),
-    url('../fonts//Benzin-Bold.ttf') format('ttf'),
+	font-family: 'Benzin-Bold';
+	src:
+		url('../fonts/Benzin-Bold.woff2') format('woff2'),
+		url('../fonts//Benzin-Bold.ttf') format('ttf');
 }
 
 @font-face {
-  font-family: 'Benzin-Medium';
-  src: url('../fonts/Benzin-Medium.woff2') format('woff2'),
-    url('../fonts//Benzin-Medium.ttf') format('ttf'),
-
+	font-family: 'Benzin-Medium';
+	src:
+		url('../fonts/Benzin-Medium.woff2') format('woff2'),
+		url('../fonts//Benzin-Medium.ttf') format('ttf');
 }
 @font-face {
-  font-family: 'Belgrano';
-  src: url('../fonts/Belgrano-Regular.woff2') format('woff2'),
+	font-family: 'Belgrano';
+	src: url('../fonts/Belgrano-Regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Pompei-Pro';
+	src: url('../fonts/PompeiPro-Regular.otf') format('opentype');
+}
+@font-face {
+	font-family: 'Helvetica';
+	src: url('../fonts/helvetica_regular.otf') format('opentype');
+}
+@font-face {
+	font-family: 'Helvetica-Bold';
+	src: url('../fonts/helvetica_bold.otf') format('opentype');
 }
