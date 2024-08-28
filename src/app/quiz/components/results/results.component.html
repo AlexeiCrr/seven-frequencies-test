@@ -1,23 +1,47 @@
 <div class="results">
-	<div class="results-bg"></div>
-	<div>
-		<div class="results-title">Congratulations!</div>
-		<div class="results-subtitle">Your communication frequency results will be emailed to you!</div>
-	</div>
-	<div class="results-content">
-		<div *ngFor="let frequency of sortedFrequencies() ; let i = index" class="result-item">
+	<!-- <div> <div class="results-title">Congratulations!</div> <div class="results-subtitle">Your communication frequency results will be emailed to you!</div> </div> <div class="results-content"> <div *ngFor="let frequency of sortedFrequencies() ; let i = index" class="result-item"> <img class="result-icon" src="../../../../assets/{{frequency.name.toLowerCase()}}.png" alt="'{{frequency.name}} icon'" /> <div class="result-count">{{ frequency.value }}</div> <div class="result-name">{{ frequency.name }}</div> </div> </div> <div class="join-button-container"> <button class="join-button" mat-raised-button color="primary" (click)="handleJoin()"> Join the arena </button> </div> -->
+
+	<div *ngIf="frequencyInfo" class="quiz-result">
+		<div class="quiz-result__left">
+			<a class="back-btn" href="/">
+				<img src="../../../../assets/arrow_back.svg" alt="" />
+			</a>
+			<div class="frequency-name">
+				<p class="pre-title">Your primary frequency</p>
+				<h1 class="title" [style.color]="frequencyInfo.color">{{frequencyInfo.title}}</h1>
+				<h3 class="outline">{{frequencyInfo.outline}}</h3>
+			</div>
 			<img
-				class="result-icon"
-				src="../../../../assets/{{frequency.name.toLowerCase()}}.png"
-				alt="'{{frequency.name}} icon'"
+				class="results-photo"
+				src="https://taoc-quiz-media.s3.us-west-1.amazonaws.com/images/{{frequencyInfo?.title?.toLowerCase()}}.jpg"
+				alt="{{frequencyInfo.title}} image"
 			/>
-			<div class="result-count">{{ frequency.value }}</div>
-			<div class="result-name">{{ frequency.name }}</div>
+
+			<div class="purchase-link-wrapper">
+				<p class="book-title">THE SEVEN FREQUENCIES OF COMMUNICATION</p>
+				<a
+					class="purchase-link"
+					href="https://shop.erwinmcmanus.com/collections/the-seven-frequencies-top/products/the-7-frequencies-of-communication"
+					target="_blank"
+					>PURCHASE THE BOOK</a
+				>
+			</div>
+		</div>
+		<div class="quiz-result__right">
+			<div class="item" *ngFor="let item of frequencyInfo.data | keyvalue | reverse">
+				<h4 class="name">{{ item.key.split('_').join(' ') }}</h4>
+				<h2 class="value">{{ item.value }}</h2>
+			</div>
 		</div>
 	</div>
-	<div class="join-button-container">
-		<button class="join-button" mat-raised-button color="primary" (click)="handleJoin()">
-			Join the arena
-		</button>
+	<div class="mobile-only-section">
+		<img src="../../../../assets/book_cover.jpg" alt="" />
+		<h3 class="book-title">THE SEVEN FREQUENCIES OF COMMUNICATION</h3>
+		<a
+			href="https://shop.erwinmcmanus.com/collections/the-seven-frequencies-top/products/the-7-frequencies-of-communication"
+			target="_blank"
+		>
+			<button class="purchase-button">Purchase the book</button>
+		</a>
 	</div>
 </div>

@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { FrequencyInfoService } from 'src/app/admin/services/frequency.service';
 
 import { Frequency, QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
 
@@ -9,6 +11,13 @@ import { Frequency, QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
 })
 export class ResultsComponent {
 	@Input() public quizResponse: QuizResponse | null = null;
+	public frequencyInfo: Record<string, Frequency> = {};
+	private readonly subscriptions = new Subscription();
+
+	public constructor(
+		private readonly cdr: ChangeDetectorRef,
+		private frequencyInfoService: FrequencyInfoService
+	) {}
 
 	mockResults: QuizResponse = {
 		firstName: 'Alexei',
@@ -39,17 +48,54 @@ export class ResultsComponent {
 		],
 	};
 
-	sortedFrequencies(): Frequency[] {
-		return this.quizResponse?.frequencies.sort((a, b) => b.value - a.value) || [];
+	public ngOnInit(): void {
+		this.getFrequencyData();
 	}
 
-	// sortedFrequencies(): Frequency[] {
-	// 	return this.mockResults?.frequencies.sort((a, b) => b.value - a.value) || [];
-	// }
+	getFrequencyData() {
+		const sortedFrequencies =
+			this.quizResponse?.frequencies.sort((a, b) => b.value - a.value) || [];
 
-	// ngOnInit() {
-	// 	console.log('Quiz response:', this.quizResponse);
-	// 	debugger;
+		if (sortedFrequencies.length) {
+			this.subscriptions.add(
+				this.frequencyInfoService.getFrequencyInfo().subscribe({
+					next: (data) => {
+						const mainFrequency = sortedFrequencies[0].name.toLowerCase();
+						this.frequencyInfo = data[mainFrequency];
+						console.log('FREQUENCY INFO LOADED:', data[mainFrequency]);
+						this.cdr.markForCheck();
+					},
+					error: (error) => {
+						console.error('Error loading frequency info:', error);
+						this.cdr.markForCheck();
+					},
+				})
+			);
+		}
+	}
+
+	// Mock frequency data
+	// getFrequencyData() {
+	// 	const sortedFrequencies = this.mockResults?.frequencies.sort((a, b) => b.value - a.value) || [];
+
+	// 	console.log(sortedFrequencies);
+
+	// 	if (sortedFrequencies.length) {
+	// 		this.subscriptions.add(
+	// 			this.frequencyInfoService.getFrequencyInfo().subscribe({
+	// 				next: (data) => {
+	// 					const mainFrequency = sortedFrequencies[0].name.toLowerCase();
+	// 					this.frequencyInfo = data[mainFrequency];
+	// 					console.log('FREQUENCY INFO LOADED:', data[mainFrequency]);
+	// 					this.cdr.markForCheck();
+	// 				},
+	// 				error: (error) => {
+	// 					console.error('Error loading frequency info:', error);
+	// 					this.cdr.markForCheck();
+	// 				},
+	// 			})
+	// 		);
+	// 	}
 	// }
 
 	public handleJoin() {

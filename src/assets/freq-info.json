@@ -1,0 +1,128 @@
+{
+	"professor": {
+		"title": "professor",
+		"outline": "the professor frequency transmits knowledge and assures competency",
+		"color": "#9D8266",
+		"data": {
+			"themes": "teacher / instructor / mentor",
+			"point_of_view": "people need me to give them the information they need to succeed",
+			"marker": "do others look to you to help them learn and understand?",
+			"followers": "people listen because you help them get the knowledge or skill they need",
+			"drive": "i must pass on the knowledge i have acquired!",
+			"dynamic": "informing",
+			"high_need": "competency",
+			"color": "chestnut",
+			"culture_created": "learner / developer",
+			"basic_need": "knowledge",
+			"icon": "jordan peterson"
+		}
+	},
+	"seer": {
+		"title": "seer",
+		"outline": "the seer frequency transmits vision and generates innovation",
+		"color": "#B6CEE8",
+		"data": {
+			"themes": "visionary/futurist/pioneer",
+			"point_of_view": "people need me to show them the future that has yet to be created",
+			"marker": "do others look to you for a vision for their future?",
+			"followers": "people listen because you paint a compelling picture of a potential future",
+			"drive": "i must open the eyes of the blind!",
+			"dynamic": "innovating",
+			"high_need": "innovation",
+			"color": "arctic",
+			"culture_created": "futuristic / risk-taking",
+			"basic_need": "vision/hope",
+			"icon": "martin luther king jr."
+		}
+	},
+	"maven": {
+		"title": "maven",
+		"outline": "the maven frequency transmits a new reality and creates paradigm shifts",
+		"color": "#C7933A",
+		"data": {
+			"themes": "iconoclast/outlier/heretic",
+			"point_of_view": "people need to explore the unknown",
+			"marker": "do others look to you for the unexpected?",
+			"followers": "people listen because the mystery is unsolved",
+			"drive": "i must liberate us from our false view of reality",
+			"dynamic": "innovating",
+			"high_need": "paradigm shift",
+			"color": "medallion",
+			"culture_created": "pioneering / imaginative",
+			"basic_need": "curiosity",
+			"icon": "albert einstein"
+		}
+	},
+	"motivator": {
+		"title": "motivator",
+		"outline": "the motivator frequency transmits energy and infuses self-belief",
+		"color": "#E4892E",
+		"data": {
+			"themes": "encourager / enthusiast / inspirer",
+			"point_of_view": "people need me to lift them up",
+			"marker": "do others look to you for encouragement?",
+			"followers": "people listen because you make them feel good about life and themselves",
+			"drive": "i must bring the energy to the room!",
+			"dynamic": "relating",
+			"high_need": "self-belief",
+			"color": "sunburst",
+			"culture_created": "positive/optimistic",
+			"basic_need": "energy",
+			"icon": "steve ballmer"
+		}
+	},
+	"challenger": {
+		"title": "challenger",
+		"outline": "the challenger frequency transmits courage and awakens calling",
+		"color": "#B84C35",
+		"data": {
+			"themes": "persuader / exhorter / confronter",
+			"point_of_view": "people need me to call out the best in them",
+			"marker": "do others look to you to call them to a higher standard?",
+			"followers": "people listen because you inspire them to be more and do more",
+			"drive": "i must raise the standard!",
+			"dynamic": "activating",
+			"high_need": "mandate",
+			"color": "crimson",
+			"culture_created": "activist/achiever",
+			"basic_need": "courage",
+			"icon": "pep guardiola"
+		}
+	},
+	"commander": {
+		"title": "commander",
+		"outline": "the commander frequency transmits trust and provides direction",
+		"color": "#BDBCC1",
+		"data": {
+			"themes": "authoritarian / executor / directive",
+			"point_of_view": "people need me to tell them what to do and what must be done",
+			"marker": "do others look to you to tell them what to do?",
+			"followers": "people listen because you carry authority and are in charge",
+			"drive": "i must move people to action!",
+			"dynamic": "activating",
+			"high_need": "direction",
+			"color": "titanium",
+			"culture_created": "conviction / responsibility",
+			"basic_need": "trust",
+			"icon": "bill belichick"
+		}
+	},
+	"healer": {
+		"title": "healer",
+		"outline": "the healer frequency transmits acceptance and extends wholeness",
+		"color": "#676652",
+		"data": {
+			"themes": "counselor / therapist / developer",
+			"point_of_view": "people need me to understand them and help them understand themselves",
+			"marker": "do others look to you for empathy and compassion?",
+			"followers": "people listen because you see them and help them face their wounds",
+			"drive": "i must create a safe space for people to heal",
+			"dynamic": "relating",
+			"high_need": "wholeness",
+			"color": "oakmoss",
+			"culture_created": "nurturing / therapeutic",
+			"basic_need": "acceptance",
+			"icon": "oprah winfrey"
+		}
+	}
+}

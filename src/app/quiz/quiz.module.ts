@@ -17,38 +17,40 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 // Third-party modules
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
+import { ReversePipe } from 'src/app/quiz/pipes/reverse.pipe';
 import { GreetingComponent } from './components/greeting/greeting.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuizHomeComponent } from './components/quiz-home/quiz-home.component';
 import { ResultsComponent } from './components/results/results.component';
 
 const MatModules = [
-  MatRadioModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatButtonModule,
-  MatProgressBarModule,
-  MatInputModule,
-  MatButtonToggleModule,
-  MatProgressSpinnerModule,
-  MatSelectModule,
-  MatCheckboxModule,
+	MatRadioModule,
+	MatToolbarModule,
+	MatIconModule,
+	MatButtonModule,
+	MatProgressBarModule,
+	MatInputModule,
+	MatButtonToggleModule,
+	MatProgressSpinnerModule,
+	MatSelectModule,
+	MatCheckboxModule,
 ];
 
 @NgModule({
-  declarations: [
-    QuizHomeComponent,
-    QuestionComponent,
-    GreetingComponent,
-    ResultsComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ...MatModules,
-    NgxMaskDirective,
-    NgxMaskPipe,
-  ],
+	declarations: [
+		QuizHomeComponent,
+		QuestionComponent,
+		GreetingComponent,
+		ResultsComponent,
+		ReversePipe,
+	],
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		...MatModules,
+		NgxMaskDirective,
+		NgxMaskPipe,
+	],
 })
 export class QuizModule {}
