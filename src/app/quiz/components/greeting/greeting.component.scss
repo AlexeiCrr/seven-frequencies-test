@@ -26,10 +26,12 @@
 
 .greeting-title {
 	text-align: center;
-	font-size: 40px;
-	line-height: 42px;
+	font-size: 32px;
+	line-height: 36px;
 	text-transform: uppercase;
 	text-align: center;
+	margin-top: auto;
+	max-width: 570px;
 
 	@media (max-width: $mobile-width) {
 		line-height: 32px;
@@ -39,7 +41,7 @@
 
 .greeting-form {
 	margin-top: 40px;
-	margin: 40px auto 0;
+	margin: 40px auto auto;
 	display: flex;
 	flex-wrap: wrap;
 	max-width: 420px;

@@ -34,15 +34,15 @@
 .quiz-title {
 	font-family: $font-family;
 	margin-top: 80px;
-	font-size: 72px;
-	line-height: 100px;
+	font-size: 65px;
+	line-height: 72px;
 	text-align: center;
 	color: $off-white;
-	margin-bottom: 0;
+	margin-bottom: 20px;
 
 	@media (max-width: $tablet-width) {
-		font-size: 56px;
-		line-height: 60px;
+		font-size: 52px;
+		line-height: 56px;
 		margin-bottom: 12px;
 	}
 	@media (max-width: $xs-width) {
@@ -53,13 +53,14 @@
 }
 
 .quiz-subtitle {
-	font-size: 12px;
+	font-size: 48px;
+	line-height: 48px;
 	color: $off-white;
 	text-align: center;
 	margin-bottom: 48px;
 
 	@media (max-width: $mobile-width) {
-		font-size: 14px;
+		font-size: 24px;
 	}
 }
 
@@ -166,13 +167,26 @@
 .quiz-footer {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 	text-align: center;
 	padding-bottom: 30px;
 	font-family: $font-family;
-	justify-content: center;
 	align-items: center;
 	font-size: 16px;
 	color: $off-white;
+	padding: 24px;
+	width: 100%;
+	.logo-footer {
+		width: 40px;
+		&:last-child {
+			// margin-top: 8px;
+			width: 50px;
+		}
+	}
+
+	.hide-desktop {
+		display: none;
+	}
 
 	p {
 		margin-bottom: 0;
@@ -180,16 +194,31 @@
 
 	@media (max-width: $mobile-width) {
 		flex-direction: column;
-		.hide-mobile {
-			display: none;
-		}
 
-		p {
-			&:first-child {
-				margin-bottom: 8px;
-			}
+		.logo-footer {
 			&:last-child {
-				margin-top: 8px;
+				// width: 40px;
+			}
+			&.hide-desktop {
+				display: block !important;
+			}
+
+			&.hide-mobile {
+				display: none;
+			}
+		}
+		.mobile-logos {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 12px;
+			img {
+				margin-top: 0;
+				margin-bottom: 0;
+
+				&:first-child {
+					margin-right: 12px;
+				}
 			}
 		}
 	}

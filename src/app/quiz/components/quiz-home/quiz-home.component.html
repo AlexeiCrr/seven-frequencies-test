@@ -1,7 +1,7 @@
 <div class="quiz">
 	<div *ngIf="!isStarted && !showForm" class="quiz-header">
 		<h2 class="quiz-title">Find Your Frequency</h2>
-		<h3 class="quiz-subtitle">THE 7 FREQUENCIES OF COMMUNICATION</h3>
+		<h3 class="quiz-subtitle">THE SEVEN FREQUENCIES OF COMMUNICATION</h3>
 		<button class="start-quiz-button" mat-stroked-button color="primary" (click)="onShowForm()">
 			start the assessment
 		</button>
@@ -55,11 +55,19 @@
 	</div>
 
 	<div class="quiz-footer">
-		<p>7</p>
-		<p class="footer-text">
-			A study and exploration by Erwin Raphael McManus into finding hidden<br class="hide-mobile" />
-			languages through communication frequencies.
-		</p>
-		<p>7</p>
+		<div class="mobile-logos">
+			<img class="logo-footer" src="../../../../assets/logo-white.png" alt="Arena Logo" />
+			<img
+				class="logo-footer hide-desktop"
+				src="../../../../assets/arena-logo-white.png"
+				alt="Arena Logo"
+			/>
+		</div>
+		<p class="footer-text">By Erwin Raphael McManus</p>
+		<img
+			class="logo-footer hide-mobile"
+			src="../../../../assets/arena-logo-white.png"
+			alt="Arena Logo"
+		/>
 	</div>
 </div>

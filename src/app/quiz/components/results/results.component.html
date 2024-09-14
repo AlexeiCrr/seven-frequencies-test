@@ -1,7 +1,25 @@
 <div class="results">
-	<!-- <div> <div class="results-title">Congratulations!</div> <div class="results-subtitle">Your communication frequency results will be emailed to you!</div> </div> <div class="results-content"> <div *ngFor="let frequency of sortedFrequencies() ; let i = index" class="result-item"> <img class="result-icon" src="../../../../assets/{{frequency.name.toLowerCase()}}.png" alt="'{{frequency.name}} icon'" /> <div class="result-count">{{ frequency.value }}</div> <div class="result-name">{{ frequency.name }}</div> </div> </div> <div class="join-button-container"> <button class="join-button" mat-raised-button color="primary" (click)="handleJoin()"> Join the arena </button> </div> -->
+	<a class="back-btn" href="/">
+		<img src="../../../../assets/arrow_back.svg" alt="" />
+	</a>
+	<a class="more-info-button" mat-button href="https://www.thesevenfrequencies.com/"> More Info </a>
+	<div class="results-content">
+		<div class="results-title">Congratulations!</div>
+		<div class="results-subtitle">Your communication frequency results will be emailed to you!</div>
+	</div>
+	<!-- <div class="results-content">
+		<div *ngFor="let frequency of sortedFrequencies() ; let i = index" class="result-item">
+			<img
+				class="result-icon"
+				src="../../../../assets/{{frequency.name.toLowerCase()}}.png"
+				alt="'{{frequency.name}} icon'"
+			/>
+			<div class="result-count">{{ frequency.value }}</div>
+			<div class="result-name">{{ frequency.name }}</div>
+		</div>
+	</div> -->
 
-	<div *ngIf="frequencyInfo" class="quiz-result">
+	<!-- <div *ngIf="frequencyInfo" class="quiz-result">
 		<div class="quiz-result__left">
 			<a class="back-btn" href="/">
 				<img src="../../../../assets/arrow_back.svg" alt="" />
@@ -43,5 +61,23 @@
 		>
 			<button class="purchase-button">Purchase the book</button>
 		</a>
+	</div>
+</div> -->
+
+	<div class="results-footer">
+		<div class="mobile-logos">
+			<img class="logo-footer" src="../../../../assets/logo-green.png" alt="Arena Logo" />
+			<img
+				class="logo-footer hide-desktop"
+				src="../../../../assets/arena-logo-green.png"
+				alt="Arena Logo"
+			/>
+		</div>
+		<p class="footer-text">By Erwin Raphael McManus</p>
+		<img
+			class="logo-footer hide-mobile"
+			src="../../../../assets/arena-logo-green.png"
+			alt="Arena Logo"
+		/>
 	</div>
 </div>

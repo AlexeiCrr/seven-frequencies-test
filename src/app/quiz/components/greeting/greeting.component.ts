@@ -55,6 +55,7 @@ export class GreetingComponent {
 				const licenseCode = params['licenseCode'];
 				if (licenseCode) {
 					this.form.get('licenseCode')?.setValue(licenseCode);
+					this.onPromoCodeEntered();
 				}
 			})
 		);
@@ -110,9 +111,8 @@ export class GreetingComponent {
 		const licenseCodeControl = this.form.get('licenseCode');
 		const licenseCode = licenseCodeControl?.value;
 		this.licenseValid = false;
-		if (licenseCode) {
+		if (licenseCode && licenseCode.length === 6) {
 			this.isCheckingLicense = true;
-
 			const debounced = debounce(() => {
 				this.licenseService
 					.checkLicenseCode(licenseCode)
@@ -140,7 +140,7 @@ export class GreetingComponent {
 							this.cdr.detectChanges();
 						},
 					});
-			}, 500);
+			}, 600);
 
 			debounced();
 		}
