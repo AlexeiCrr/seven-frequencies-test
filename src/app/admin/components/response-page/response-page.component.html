@@ -33,7 +33,17 @@
 						</div>
 
 						<div class="header-item">
-							<button mat-raised-button class="resend-results-btn">Resend Results Email</button>
+							<button
+								mat-raised-button
+								[disabled]="isResending"
+								class="resend-results-btn"
+								(click)="handleResendResults()"
+							>
+								Resend Results Email
+								<div class="progress-spinner" *ngIf="isResending">
+									<mat-spinner></mat-spinner>
+								</div>
+							</button>
 						</div>
 						<!-- <div class="header-item">
 							Phone Number:

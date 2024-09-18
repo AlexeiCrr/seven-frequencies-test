@@ -1,6 +1,8 @@
 <div class="main-wrapper">
-	<div class="main-wrapper__bg">
-		<app-header />
+	<div [class]="isAdmin ? 'admin__bg' : 'main-wrapper__bg'">
+		<div *ngIf="!isAdmin">
+			<app-header />
+		</div>
 		<router-outlet></router-outlet>
 	</div>
 </div>

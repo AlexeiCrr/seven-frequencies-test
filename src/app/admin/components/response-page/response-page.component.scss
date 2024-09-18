@@ -179,3 +179,28 @@
 		opacity: 0.7;
 	}
 }
+
+::ng-deep .success-snackbar {
+	.mdc-snackbar__surface {
+		--mdc-snackbar-container-color: #4bb543;
+	}
+
+	.mdc-snackbar__action {
+		--mat-snack-bar-button-color: #fff;
+	}
+
+	.mdc-snackbar__label {
+		text-transform: uppercase;
+	}
+}
+.progress-spinner {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+
+	::ng-deep .mat-mdc-progress-spinner {
+		width: 30px !important;
+		height: 30px !important;
+	}
+}

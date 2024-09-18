@@ -1,221 +1,167 @@
 <form [formGroup]="searchForm" class="search-form">
-  <div class="form-inputs">
-    <mat-form-field appearance="outline">
-      <mat-label>Name/Email</mat-label>
-      <input
-        type="text"
-        aria-label="Departure station"
-        matInput
-        formControlName="stringSearch"
-        (keyup)="applyFilter()"
-      />
-    </mat-form-field>
+	<div class="form-inputs">
+		<mat-form-field appearance="outline">
+			<mat-label>Name/Email</mat-label>
+			<input
+				type="text"
+				aria-label="Departure station"
+				matInput
+				formControlName="stringSearch"
+				(keyup)="applyFilter()"
+			/>
+		</mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Choose a Date</mat-label>
-      <input
-        matInput
-        formControlName="dateSearch"
-        [matDatepicker]="picker"
-        (dateInput)="applyFilter()"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
+		<mat-form-field appearance="outline">
+			<mat-label>Choose a Date</mat-label>
+			<input
+				matInput
+				formControlName="dateSearch"
+				[matDatepicker]="picker"
+				(dateInput)="applyFilter()"
+			/>
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+	</div>
 
-  <button
-    class="reset-button"
-    mat-raised-button
-    [disabled]="!dateSearch && !stringSearch"
-    color="primary"
-    (click)="onResetDate()"
-  >
-    Reset Filters
-  </button>
+	<button
+		class="reset-button"
+		mat-raised-button
+		[disabled]="!dateSearch && !stringSearch"
+		color="primary"
+		(click)="onResetDate()"
+	>
+		Reset Filters
+	</button>
+	<button
+		class="reset-button"
+		mat-raised-button
+		[disabled]="!quizResponses"
+		color="primary"
+		(click)="handleDownloadResults()"
+	>
+		Download All Results
+	</button>
 </form>
 
 <table
-  *ngIf="quizResponses.length"
-  class="responses-table"
-  [dataSource]="dataSource"
-  mat-table
-  matSort
+	*ngIf="quizResponses.length"
+	class="responses-table"
+	[dataSource]="dataSource"
+	mat-table
+	matSort
 >
-  <ng-container matColumnDef="firstName">
-    <th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>
-      First Name
-    </th>
-    <td class="cell" mat-cell *matCellDef="let element">
-      {{ element.firstName }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="firstName">
+		<th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+		<td class="cell" mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+	</ng-container>
 
-  <ng-container matColumnDef="lastName">
-    <th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>
-      Last Name
-    </th>
-    <td class="cell" mat-cell *matCellDef="let element">
-      {{ element.lastName }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="lastName">
+		<th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+		<td class="cell" mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+	</ng-container>
 
-  <ng-container matColumnDef="email">
-    <th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>
-      Email
-    </th>
-    <td class="cell" mat-cell *matCellDef="let element">
-      {{ element.email }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="email">
+		<th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+		<td class="cell" mat-cell *matCellDef="let element">{{ element.email }}</td>
+	</ng-container>
 
-  <ng-container matColumnDef="createdOn">
-    <th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>
-      Created At
-    </th>
-    <td class="cell" mat-cell *matCellDef="let element">
-      {{ element.createdOn | date : "M/dd/yyyy, h:mm a" }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="createdOn">
+		<th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Created At</th>
+		<td class="cell" mat-cell *matCellDef="let element">
+			{{ element.createdOn | date : "M/dd/yyyy, h:mm a" }}
+		</td>
+	</ng-container>
 
-  <ng-container matColumnDef="maven">
-    <th
-      class="header-cell header-cell--frequency"
-      mat-header-cell
-      *matHeaderCellDef
-    >
-      Maven
-    </th>
-    <td class="cell cell--frequency" mat-cell *matCellDef="let element">
-      {{ element.frequencies["Maven"] }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="maven">
+		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Maven</th>
+		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
+			{{ element.frequencies["Maven"] }}
+		</td>
+	</ng-container>
 
-  <ng-container matColumnDef="challenger">
-    <th
-      class="header-cell header-cell--frequency"
-      mat-header-cell
-      *matHeaderCellDef
-    >
-      Challenger
-    </th>
-    <td class="cell cell--frequency" mat-cell *matCellDef="let element">
-      {{ element.frequencies["Challenger"] }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="challenger">
+		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Challenger</th>
+		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
+			{{ element.frequencies["Challenger"] }}
+		</td>
+	</ng-container>
 
-  <ng-container matColumnDef="commander">
-    <th
-      class="header-cell header-cell--frequency"
-      mat-header-cell
-      *matHeaderCellDef
-    >
-      Commander
-    </th>
-    <td class="cell cell--frequency" mat-cell *matCellDef="let element">
-      {{ element.frequencies["Commander"] }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="commander">
+		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Commander</th>
+		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
+			{{ element.frequencies["Commander"] }}
+		</td>
+	</ng-container>
 
-  <ng-container matColumnDef="motivator">
-    <th
-      class="header-cell header-cell--frequency"
-      mat-header-cell
-      *matHeaderCellDef
-    >
-      Motivator
-    </th>
-    <td class="cell cell--frequency" mat-cell *matCellDef="let element">
-      {{ element.frequencies["Motivator"] }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="motivator">
+		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Motivator</th>
+		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
+			{{ element.frequencies["Motivator"] }}
+		</td>
+	</ng-container>
 
-  <ng-container matColumnDef="seer">
-    <th
-      class="header-cell header-cell--frequency"
-      mat-header-cell
-      *matHeaderCellDef
-    >
-      Seer
-    </th>
-    <td class="cell cell--frequency" mat-cell *matCellDef="let element">
-      {{ element.frequencies["Seer"] }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="seer">
+		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Seer</th>
+		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
+			{{ element.frequencies["Seer"] }}
+		</td>
+	</ng-container>
 
-  <ng-container matColumnDef="professor">
-    <th
-      class="header-cell header-cell--frequency"
-      mat-header-cell
-      *matHeaderCellDef
-    >
-      Professor
-    </th>
-    <td class="cell cell--frequency" mat-cell *matCellDef="let element">
-      {{ element.frequencies["Professor"] }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="professor">
+		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Professor</th>
+		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
+			{{ element.frequencies["Professor"] }}
+		</td>
+	</ng-container>
 
-  <ng-container matColumnDef="healer">
-    <th
-      class="header-cell header-cell--frequency"
-      mat-header-cell
-      *matHeaderCellDef
-    >
-      Healer
-    </th>
-    <td class="cell cell--frequency" mat-cell *matCellDef="let element">
-      {{ element.frequencies["Healer"] }}
-    </td>
-  </ng-container>
+	<ng-container matColumnDef="healer">
+		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Healer</th>
+		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
+			{{ element.frequencies["Healer"] }}
+		</td>
+	</ng-container>
 
-  <!-- Header row first group -->
-  <ng-container matColumnDef="header-row-first-group">
-    <th
-      class="header-cell"
-      mat-header-cell
-      *matHeaderCellDef
-      [style.text-align]="'center'"
-      [attr.colspan]="4"
-    >
-      User Data
-    </th>
-  </ng-container>
+	<!-- Header row first group -->
+	<ng-container matColumnDef="header-row-first-group">
+		<th
+			class="header-cell"
+			mat-header-cell
+			*matHeaderCellDef
+			[style.text-align]="'center'"
+			[attr.colspan]="4"
+		>
+			User Data
+		</th>
+	</ng-container>
 
-  <!-- Header row second group -->
-  <ng-container matColumnDef="header-row-second-group">
-    <th
-      class="header-cell"
-      mat-header-cell
-      *matHeaderCellDef
-      [attr.colspan]="7"
-    >
-      Frequencies
-    </th>
-  </ng-container>
+	<!-- Header row second group -->
+	<ng-container matColumnDef="header-row-second-group">
+		<th class="header-cell" mat-header-cell *matHeaderCellDef [attr.colspan]="7">Frequencies</th>
+	</ng-container>
 
-  <tr
-    class="header-cell"
-    mat-header-row
-    *matHeaderRowDef="['header-row-first-group', 'header-row-second-group']"
-  ></tr>
+	<tr
+		class="header-cell"
+		mat-header-row
+		*matHeaderRowDef="['header-row-first-group', 'header-row-second-group']"
+	></tr>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr
-    class="row"
-    mat-row
-    *matRowDef="let row; columns: displayedColumns"
-    (click)="onRowClick(row)"
-  ></tr>
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr
+		class="row"
+		mat-row
+		*matRowDef="let row; columns: displayedColumns"
+		(click)="onRowClick(row)"
+	></tr>
 
-  <tr class="mat-row" *matNoDataRow>
-    <td class="mat-cell" colspan="4">
-      <div class="no-data">Sorry, no data found...</div>
-    </td>
-  </tr>
+	<tr class="mat-row" *matNoDataRow>
+		<td class="mat-cell" colspan="4">
+			<div class="no-data">Sorry, no data found...</div>
+		</td>
+	</tr>
 </table>
 
 <mat-paginator
-  [pageSizeOptions]="[25, 50, 100]"
-  aria-label="Select page of responses"
+	[pageSizeOptions]="[25, 50, 100]"
+	aria-label="Select page of responses"
 ></mat-paginator>

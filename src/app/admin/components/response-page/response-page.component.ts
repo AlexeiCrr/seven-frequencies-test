@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 
 import { Router } from '@angular/router';
+import { ResendResponseService } from 'src/app/admin/services/response.service';
 import { QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
 import { AdminState } from '../../reducers/admin.reducers';
 import {
@@ -26,6 +28,7 @@ export class ResponsePageComponent implements OnInit {
 	public error: string = '';
 	public phoneNumberMask = '(000) 000-0000';
 	public authorizedUser: UserIdentity;
+	public isResending = false;
 
 	private readonly subscriptions = new Subscription();
 
@@ -33,7 +36,9 @@ export class ResponsePageComponent implements OnInit {
 		private readonly adminStore: Store<AdminState>,
 		private readonly cdr: ChangeDetectorRef,
 		private readonly router: Router,
-		private readonly authService: AuthService
+		private readonly authService: AuthService,
+		private resendResponseService: ResendResponseService,
+		private snackBar: MatSnackBar
 	) {}
 
 	public ngOnInit(): void {
@@ -68,8 +73,30 @@ export class ResponsePageComponent implements OnInit {
 		);
 	}
 
-	private resendResultsEmail(): void {
-		// Implement email resending logic here
+	public handleResendResults(): void {
+		this.isResending = true;
+
+		this.resendResponseService.resendResponse(this.quizResponse.id).subscribe({
+			next: (result) => {
+				this.isResending = false;
+				this.cdr.detectChanges(); // Force change detection here
+				if (result.success) {
+					console.log(result.message);
+					this.snackBar.open(result.message, 'Close', {
+						duration: 10000,
+						panelClass: ['success-snackbar'],
+						verticalPosition: 'top',
+					});
+				} else {
+					console.error(result.message);
+				}
+			},
+			error: (error) => {
+				console.error('Error resending response:', error);
+				this.isResending = false;
+				this.cdr.detectChanges(); // Force change detection here as well
+			},
+		});
 	}
 
 	public onBackClick(): void {
