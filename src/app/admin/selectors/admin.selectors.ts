@@ -1,32 +1,35 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AdminState } from '../reducers/admin.reducers';
 import { QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
+import { AdminState } from '../reducers/admin.reducers';
 
 export const selectAdminState = createFeatureSelector<AdminState>('adminStore');
 
 export const selectQuizResponses = createSelector(
-  selectAdminState,
-  (state: AdminState): QuizResponse[] => state.quizResponsesList.quizResponses
+	selectAdminState,
+	(state: AdminState): QuizResponse[] => state.quizResponsesList.quizResponses
 );
 export const selectQuizResponsesLoading = createSelector(
-  selectAdminState,
-  (state: AdminState): boolean => state.quizResponsesList.loading
+	selectAdminState,
+	(state: AdminState): boolean => state.quizResponsesList.loading
 );
 export const selectQuizResponsesError = createSelector(
-  selectAdminState,
-  (state: AdminState): string => state.quizResponsesList.error
+	selectAdminState,
+	(state: AdminState): string => state.quizResponsesList.error
 );
 
 export const selectSingleQuizResponse = createSelector(
-  selectAdminState,
-  (state: AdminState): QuizResponse | null =>
-    state.singleQuizResponse.quizResponse
+	selectAdminState,
+	(state: AdminState): QuizResponse | null => state.singleQuizResponse.quizResponse
 );
 export const selectSingleQuizResponseLoading = createSelector(
-  selectAdminState,
-  (state: AdminState): boolean => state.singleQuizResponse.loading
+	selectAdminState,
+	(state: AdminState): boolean => state.singleQuizResponse.loading
 );
 export const selectSingleQuizResponseError = createSelector(
-  selectAdminState,
-  (state: AdminState): string => state.singleQuizResponse.error
+	selectAdminState,
+	(state: AdminState): string => state.singleQuizResponse.error
+);
+export const selectModifyResponseStatus = createSelector(
+	selectAdminState,
+	(state: AdminState) => state.modifyResponseStatus
 );

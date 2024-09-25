@@ -14,6 +14,11 @@ export interface AdminState {
 		loading: boolean;
 		error: string;
 	};
+	modifyResponseStatus: {
+		loading: boolean;
+		error: string;
+		success: boolean;
+	};
 }
 
 export const initialQuizState: AdminState = {
@@ -26,6 +31,11 @@ export const initialQuizState: AdminState = {
 		quizResponse: null,
 		loading: false,
 		error: '',
+	},
+	modifyResponseStatus: {
+		loading: false,
+		error: '',
+		success: false,
 	},
 };
 
@@ -100,12 +110,37 @@ export const adminReducer = createReducer(
 			error: '',
 		},
 	})),
-	on(AdminActions.ResendResponseFailureAction, (state, { error }) => ({
+	on(AdminActions.ModifyResponseStartAction, (state) => ({
+		...state,
+		modifyResponseStatus: {
+			loading: true,
+			error: '',
+			success: false,
+		},
+	})),
+
+	on(AdminActions.ModifyResponseSuccessAction, (state, { modifiedResponse }) => ({
 		...state,
 		singleQuizResponse: {
 			...state.singleQuizResponse,
+			quizResponse: {
+				...state.singleQuizResponse.quizResponse,
+				...modifiedResponse,
+			},
+		},
+		modifyResponseStatus: {
+			loading: false,
+			error: '',
+			success: true,
+		},
+	})),
+
+	on(AdminActions.ModifyResponseFailureAction, (state, { error }) => ({
+		...state,
+		modifyResponseStatus: {
 			loading: false,
 			error,
+			success: false,
 		},
 	}))
 );

@@ -22,6 +22,9 @@ import { AnswersTableComponent } from './components/answers-table/answers-table.
 import { ResponsePageComponent } from './components/response-page/response-page.component';
 import { ResponsesTableComponent } from './components/responses-table/responses-table.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditUserDialogComponent } from 'src/app/admin/components/edit-user-data/edit-user-dialog.component';
+
 const MatModules = [
 	MatTableModule,
 	MatFormFieldModule,
@@ -34,6 +37,12 @@ const MatModules = [
 	MatNativeDateModule,
 	MatButtonModule,
 	MatSnackBarModule,
+	CommonModule,
+	ReactiveFormsModule,
+	MatDialogModule,
+	MatFormFieldModule,
+	MatInputModule,
+	MatButtonModule,
 ];
 
 @NgModule({
@@ -42,6 +51,7 @@ const MatModules = [
 		ResponsesTableComponent,
 		ResponsePageComponent,
 		AnswersTableComponent,
+		EditUserDialogComponent,
 	],
 	imports: [CommonModule, ReactiveFormsModule, ...MatModules, NgxMaskDirective, NgxMaskPipe],
 })

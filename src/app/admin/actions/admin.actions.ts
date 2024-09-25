@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
+import { QuizResponse, UserData } from 'src/app/quiz/interfaces/quizResponse';
 
 export const LoadQuizResponsesStartAction = createAction('[Admin] Load quiz responses start');
 export const LoadQuizResponsesSuccessAction = createAction(
@@ -39,5 +39,18 @@ export const ResendResponseSuccessAction = createAction(
 );
 export const ResendResponseFailureAction = createAction(
 	'[Admin] Resend response failure',
+	props<{ error: string }>()
+);
+
+export const ModifyResponseStartAction = createAction(
+	'[Admin] Modify response start',
+	props<{ data: UserData }>()
+);
+export const ModifyResponseSuccessAction = createAction(
+	'[Admin] Modify response success',
+	props<{ modifiedResponse: QuizResponse }>()
+);
+export const ModifyResponseFailureAction = createAction(
+	'[Admin] Modify response failure',
 	props<{ error: string }>()
 );

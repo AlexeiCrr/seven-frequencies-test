@@ -13,6 +13,9 @@ import {
 	LoadQuizResponsesSuccessAction,
 	LoadSingleQuizResponseStartAction,
 	LoadSingleQuizResponseSuccessAction,
+	ModifyResponseFailureAction,
+	ModifyResponseStartAction,
+	ModifyResponseSuccessAction,
 	ResendResponseFailureAction,
 	ResendResponseStartAction,
 	ResendResponseSuccessAction,
@@ -80,6 +83,20 @@ export class AdminEffects {
 				this.resendResponseService.resendResponse(id).pipe(
 					map((result) => ResendResponseSuccessAction({ message: result.message })),
 					catchError((error) => of(ResendResponseFailureAction({ error: error.message })))
+				)
+			)
+		)
+	);
+
+	public modifyResponse$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(ModifyResponseStartAction),
+			switchMap((action) =>
+				this.adminService.modifyResponse(action.data).pipe(
+					map((modifiedResponse: QuizResponse) =>
+						ModifyResponseSuccessAction({ modifiedResponse })
+					),
+					catchError((error) => of(ModifyResponseFailureAction({ error: error.message })))
 				)
 			)
 		)

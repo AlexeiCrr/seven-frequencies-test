@@ -1,14 +1,19 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ModifyResponseStartAction } from 'src/app/admin/actions/admin.actions';
+import { EditUserDialogComponent } from 'src/app/admin/components/edit-user-data/edit-user-dialog.component';
+import { AdminService } from 'src/app/admin/services/admin.service';
 import { ResendResponseService } from 'src/app/admin/services/response.service';
 import { QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
 import { AdminState } from '../../reducers/admin.reducers';
 import {
+	selectModifyResponseStatus,
 	selectSingleQuizResponse,
 	selectSingleQuizResponseError,
 	selectSingleQuizResponseLoading,
@@ -29,6 +34,9 @@ export class ResponsePageComponent implements OnInit {
 	public phoneNumberMask = '(000) 000-0000';
 	public authorizedUser: UserIdentity;
 	public isResending = false;
+	public isUpdating = false;
+	public changeDataDialogOpen = false;
+	private unsubscribe$ = new Subject<void>();
 
 	private readonly subscriptions = new Subscription();
 
@@ -37,13 +45,20 @@ export class ResponsePageComponent implements OnInit {
 		private readonly cdr: ChangeDetectorRef,
 		private readonly router: Router,
 		private readonly authService: AuthService,
+		private readonly adminService: AdminService,
 		private resendResponseService: ResendResponseService,
-		private snackBar: MatSnackBar
+		private snackBar: MatSnackBar,
+		private dialog: MatDialog
 	) {}
 
 	public ngOnInit(): void {
 		this.loadQuizResponses();
 		this.loadAuthorizedUser();
+	}
+
+	ngOnDestroy(): void {
+		this.unsubscribe$.next();
+		this.unsubscribe$.complete();
 	}
 
 	private loadAuthorizedUser(): void {
@@ -97,6 +112,61 @@ export class ResponsePageComponent implements OnInit {
 				this.cdr.detectChanges(); // Force change detection here as well
 			},
 		});
+	}
+
+	openEditUserDialog(): void {
+		const dialogRef = this.dialog.open(EditUserDialogComponent, {
+			width: '400px',
+			data: {
+				firstName: this.quizResponse?.firstName,
+				lastName: this.quizResponse?.lastName,
+				email: this.quizResponse?.email,
+				responseId: this.quizResponse?.id,
+			},
+		});
+
+		dialogRef.afterClosed().subscribe((result) => {
+			this.isUpdating = true;
+			if (result) {
+				this.adminStore.dispatch(
+					ModifyResponseStartAction({
+						data: {
+							...result,
+							responseId: this.quizResponse?.id,
+						},
+					})
+				);
+
+				this.adminStore
+					.pipe(select(selectModifyResponseStatus), takeUntil(this.unsubscribe$))
+					.subscribe((status) => {
+						if (status.success) {
+							this.isUpdating = false;
+							this.snackBar.open('Data modified successfully', 'Close', {
+								duration: 4000,
+								verticalPosition: 'top',
+								panelClass: ['success-snackbar'],
+							});
+						} else if (status.error) {
+							this.isUpdating = false;
+							this.snackBar.open('Failed to modify response', 'Close', {
+								duration: 3000,
+								verticalPosition: 'top',
+								panelClass: ['error-snackbar'],
+							});
+						}
+						this.quizResponse = {
+							...this.quizResponse,
+							...result,
+						};
+						this.cdr.markForCheck();
+					});
+			}
+		});
+	}
+
+	public handleOpenDialog(): void {
+		this.changeDataDialogOpen = true;
 	}
 
 	public onBackClick(): void {

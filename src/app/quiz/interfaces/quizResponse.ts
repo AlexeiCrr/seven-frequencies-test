@@ -33,3 +33,10 @@ export interface CreateQuizResponseParams {
 	userData: GreetingFormData;
 	answers: Answer[];
 }
+
+export interface UserData {
+	firstName: string;
+	lastName: string;
+	email: string;
+	responseId?: number;
+}
