@@ -6,9 +6,9 @@
 	<div class="results-content">
 		<div class="results-title">Congratulations!</div>
 		<div class="results-subtitle">Your communication frequency results will be emailed to you!</div>
-		<!-- <button (click)="generatePDF()" class="download-results-btn" mat-button>
+		<button (click)="generatePDF()" class="download-results-btn" mat-button>
 			Download results
-		</button> -->
+		</button>
 	</div>
 
 	<!-- <div class="results-content">
@@ -83,5 +83,197 @@
 			src="../../../../assets/arena-logo-green.png"
 			alt="Arena Logo"
 		/>
+	</div>
+</div>
+
+<div class="pdf-content__wrapper">
+	<!-- <div *ngIf="mockResults as quizResponse" id="pdf-content"> -->
+	<div *ngIf="quizResponse" id="pdf-content">
+		<div
+			style="
+				max-width: 600px;
+				color: #5e6153;
+				margin: 0 auto;
+				font-family: Helvetica, Arial, sans-serif;
+				padding: 15px;
+				box-sizing: border-box;
+			"
+		>
+			<div style="text-align: left">
+				<p
+					style="
+						font-size: 16px;
+						line-height: 33px;
+						margin-top: 0;
+						font-weight: 400;
+						margin-bottom: 0;
+					"
+				>
+					Hello {{ quizResponse.firstName }} {{ quizResponse.lastName }}!
+				</p>
+			</div>
+
+			<div style="text-align: center">
+				<p style="font-size: 16px; text-align: left; line-height: 22px; font-weight: 400">
+					Your <b>Seven Frequencies</b> results:
+				</p>
+				<br />
+				<div
+					*ngFor="let frequency of quizResponse.frequencies; let i = index"
+					style="float: left; margin-right: 40px; margin-bottom: 20px"
+				>
+					<img
+						style="display: block; margin: 0 auto"
+						[src]="'https://taoc-quiz-media.s3.us-west-1.amazonaws.com/images/' + frequency.name.toLowerCase() + '.png'"
+						[alt]="frequency.name + ' image'"
+						crossorigin="anonymous"
+						class="frequency-response-img"
+					/>
+					<p style="margin-top: 0">
+						<span style="display: block; margin-bottom: 10px; text-transform: uppercase">
+							{{ frequency.name }}
+						</span>
+						<span
+							style="
+								color: #5e6153;
+								font-size: 32px;
+								line-height: 32px;
+								margin-top: 0;
+								font-weight: bold;
+								text-transform: uppercase;
+							"
+						>
+							0{{ i + 1 }}
+						</span>
+					</p>
+				</div>
+				<br />
+			</div>
+
+			<div style="clear: left">
+				<div
+					*ngFor="let frequency of quizResponse.frequencies; let i = index"
+					style="color: #5e6153"
+				>
+					<p
+						style="
+							margin-bottom: 5px;
+							text-transform: uppercase;
+							font-weight: bold;
+							font-style: italic;
+						"
+					>
+						#{{ i + 1 }} {{ frequency.name }}
+					</p>
+					<p
+						style="
+							margin-top: 0;
+							font-size: 16px;
+							color: #5e6153;
+							line-height: 26px;
+							text-align: left;
+							margin-bottom: 20px;
+						"
+					>
+						{{ frequency.description }}
+					</p>
+				</div>
+			</div>
+			<div
+				style="
+					font-size: 16px;
+					color: #5e6153;
+					line-height: 26px;
+					text-align: left;
+					margin-bottom: 30px;
+				"
+			>
+				<p style="margin-top: 0">
+					These are the
+					<b>top three communication frequencies</b>
+					you utilize and access most naturally, but each of the Seven Frequencies can become a part
+					of your communication toolkit over time.<br />
+					Your #1 frequency is what we call your core or
+					<b>primary frequency</b>. Discovering the power and potential of your primary frequency
+					will revolutionize how you impact the world around you.
+					<br />
+				</p>
+				<p style="color: #5e6153">
+					This is why we've created a
+					<b>unique workbook</b>
+					just for your frequency.
+				</p>
+				<a
+					[href]="'https://taoc-quiz-media.s3.us-west-1.amazonaws.com/workbook/' + quizResponse.frequencies[0].name.toLowerCase() + '.pdf'"
+					download="download"
+					target="_blank"
+					style="text-decoration: none"
+				>
+					<button
+						style="
+							color: #f3f0e8;
+							background-color: #5e6153;
+							padding: 10px 20px;
+							border: none;
+							outline: none;
+							font-size: 16px;
+							cursor: pointer;
+							text-transform: uppercase;
+							margin-bottom: 20px;
+						"
+					>
+						Download Workbook
+					</button>
+				</a>
+				<p style="color: #5e6153; margin-bottom: 60px">
+					The workbook insights and applications will give you a comprehensive understanding of how
+					to utilize your frequency to become a better speaker, leader, author, parent, partner, or
+					teammate.
+				</p>
+				<p style="color: #5e6153">
+					Visit us at
+					<a href="https://www.thesevenfrequencies.com/">thesevenfrequencies.com</a>
+					to find out more about the Seven Frequencies.
+				</p>
+				<p style="color: #5e6153">
+					Learn more about the Seven Frequencies in
+					<i>The Seven Frequencies of Communication: The Hidden Language of Human Connection</i>
+					book by Erwin Raphael McManus.
+					<a
+						href="https://shop.erwinmcmanus.com/collections/the-seven-frequencies-top/products/the-7-frequencies-of-communication"
+						target="_blank"
+					>
+						Buy It Now!
+					</a>
+				</p>
+				<p style="text-transform: uppercase">- The Seven Frequencies Team</p>
+			</div>
+
+			<div
+				style="
+					font-size: 14px;
+					color: #5e6153;
+					line-height: 26px;
+					margin-bottom: 60px;
+					text-align: left;
+				"
+			>
+				PS: If you have any questions about your personal results or want assistance bringing the
+				Seven Frequencies to your team or workplace, reach out to us
+				<a href="https://erwinmcmanus.com/contact">here</a>!
+			</div>
+
+			<footer>
+				<p style="color: #5e6153; text-align: center; margin-bottom: 40px">
+					Contact us:
+					<br />
+					<a
+						href="mailto:info&#64;erwinmcmanus.com"
+						style="color: #5e6153; text-decoration: underline"
+						>info&#64;erwinmcmanus.com</a
+					>
+				</p>
+			</footer>
+		</div>
 	</div>
 </div>

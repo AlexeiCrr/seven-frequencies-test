@@ -62,6 +62,9 @@
 	left: 20px;
 	top: 20px;
 	padding: 20px;
+	@media (max-width: $mobile-width) {
+		margin-left: -20px;
+	}
 }
 
 .more-info-button {
@@ -78,8 +81,9 @@
 
 	@media (max-width: $mobile-width) {
 		min-width: auto;
-		padding-left: 32px;
-		padding-right: 32px;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-right: -20px;
 	}
 }
 
@@ -120,9 +124,11 @@
 	}
 }
 
-#pdf-content {
-	display: none;
+.pdf-content__wrapper {
+	position: absolute;
+	left: -1000%;
 }
+
 .download-results-btn {
 	font-family: $font-family;
 	font-weight: 400;

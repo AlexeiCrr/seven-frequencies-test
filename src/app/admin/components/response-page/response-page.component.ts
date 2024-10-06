@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import html2pdf from 'html2pdf.js';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject, Subscription, takeUntil } from 'rxjs';
@@ -37,6 +38,7 @@ export class ResponsePageComponent implements OnInit {
 	public isUpdating = false;
 	public changeDataDialogOpen = false;
 	private unsubscribe$ = new Subject<void>();
+	public responseData: QuizResponse | null = null;
 
 	private readonly subscriptions = new Subscription();
 
@@ -71,6 +73,19 @@ export class ResponsePageComponent implements OnInit {
 		this.subscriptions.add(
 			this.adminStore.pipe(select(selectSingleQuizResponse)).subscribe((quizResponse) => {
 				this.quizResponse = quizResponse;
+
+				if (this.quizResponse?.frequencies) {
+					const sortedFrequencies = Object.entries(quizResponse.frequencies).sort(
+						(a, b) => b[1] - a[1]
+					);
+					const top3Frequencies = sortedFrequencies.slice(0, 3).reverse();
+					const frequencies = top3Frequencies.map((item) => {
+						return { name: item[0], value: item[1] };
+					});
+
+					this.responseData = { ...this.quizResponse, frequencies: frequencies as any };
+				}
+
 				this.cdr.markForCheck();
 			})
 		);
@@ -112,6 +127,22 @@ export class ResponsePageComponent implements OnInit {
 				this.cdr.detectChanges(); // Force change detection here as well
 			},
 		});
+	}
+
+	public handleDownloadResults() {}
+
+	private createAndDownloadPDF(): void {
+		const element = document.getElementById('pdf-content');
+		if (element) {
+			const opt = {
+				margin: 10,
+				filename: 'seven-frequencies-result.pdf',
+				image: { type: 'jpg', quality: 0.98 },
+				html2canvas: { scale: 2, useCORS: true },
+				jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+			};
+			html2pdf().from(element).set(opt).save();
+		}
 	}
 
 	openEditUserDialog(): void {

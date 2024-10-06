@@ -19,9 +19,22 @@ export interface QuizResponse {
 	email: string;
 	createdOn: string;
 	answers: Answer[];
+	frequencies: FrequencyMap;
+}
+
+export interface QuizResult {
+	id: number;
+	firstName: string;
+	lastName: string;
+	email: string;
+	createdOn: string;
+	answers: Answer[];
 	frequencies: Frequency[];
 }
 
+interface FrequencyMap {
+	[key: string]: number;
+}
 export interface Frequency {
 	id?: number;
 	name: string;
