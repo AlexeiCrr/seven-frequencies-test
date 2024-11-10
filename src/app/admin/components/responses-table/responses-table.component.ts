@@ -20,6 +20,7 @@ export class ResponsesTableComponent {
 		'firstName',
 		'lastName',
 		'email',
+		'licenseCode',
 		'createdOn',
 		'maven',
 		'challenger',
@@ -33,6 +34,7 @@ export class ResponsesTableComponent {
 	public searchForm: FormGroup;
 	public dateSearch: string;
 	public stringSearch: string;
+	public licenseSearch: string;
 
 	@Input() public quizResponses: QuizResponse[] = [];
 
@@ -46,8 +48,6 @@ export class ResponsesTableComponent {
 		this._quizResponses = [...this.quizResponses];
 		this.dataSource = new MatTableDataSource(this.quizResponses);
 		this.dataSource.filterPredicate = this.getFilterPredicate();
-
-		console.log(this.quizResponses);
 	}
 
 	public ngAfterViewInit() {
@@ -64,19 +64,22 @@ export class ResponsesTableComponent {
 		this.searchForm = new FormGroup({
 			stringSearch: new FormControl('', Validators.pattern('^[a-zA-Z @]+$')),
 			dateSearch: new FormControl(''),
+			licenseSearch: new FormControl(''),
 		});
 	}
 
 	public applyFilter() {
 		const stringSearchValue = this.searchForm.get('stringSearch').value;
-		console.log('stringSearchValue', stringSearchValue);
 		const dateSearchValue = this.retrieveDateFilterString(this.searchForm.get('dateSearch').value);
+		const licenseSearchValue = this.searchForm.get('licenseSearch').value;
 
 		this.dateSearch = dateSearchValue === null || dateSearchValue === '' ? '' : dateSearchValue;
 		this.stringSearch = stringSearchValue === null ? '' : stringSearchValue;
+		this.licenseSearch = licenseSearchValue === null ? '' : licenseSearchValue.trim();
 
 		// create string of our searching values and split if by '$'
-		const filterValue = this.stringSearch + '$' + this.dateSearch + '$';
+		const filterValue = this.stringSearch + '$' + this.dateSearch + '$' + this.licenseSearch + '$';
+
 		this.dataSource.filter = filterValue.trim().toLowerCase();
 	}
 
@@ -95,31 +98,47 @@ export class ResponsesTableComponent {
 		return (row: QuizResponse, filters: string) => {
 			// split string per '$' to array
 			const filterArray = filters.split('$');
-			const stringFilterValue = filterArray[0];
+			const stringFilterValue = filterArray[0].toLowerCase();
 			const dateFilterValue = filterArray[1];
+			const licenseFilterValue = filterArray[2].toLowerCase();
 
-			const matchFilter = [];
+			// Check if all filters are empty
+			if (!stringFilterValue && !dateFilterValue && !licenseFilterValue) {
+				return true;
+			}
 
-			// Fetch data from row
-			const columnFirstName = row.firstName;
-			const columnLastName = row.lastName;
-			const columnEmail = row.email;
-			const columncreatedAt = this.retrieveDateFilterString(new Date(row.createdOn));
+			// License code filter (optimized)
+			if (licenseFilterValue) {
+				const columnLicenseCode = (row.licenseCode || '').toLowerCase();
+				if (!columnLicenseCode.includes(licenseFilterValue)) {
+					return false;
+				}
+			}
 
-			// verify fetching data by our searching values
-			const customFilterFN = columnFirstName.toLowerCase().includes(stringFilterValue);
-			const customFilterLN = columnLastName.toLowerCase().includes(stringFilterValue);
-			const customFilterEM = columnEmail.toLowerCase().includes(stringFilterValue);
-			const customFilterCO = !dateFilterValue || columncreatedAt.toLowerCase() === dateFilterValue;
+			// Date filter
+			if (dateFilterValue) {
+				const columncreatedAt = this.retrieveDateFilterString(
+					new Date(row.createdOn)
+				).toLowerCase();
+				if (columncreatedAt !== dateFilterValue) {
+					return false;
+				}
+			}
 
-			// push boolean values into array
-			matchFilter.push(customFilterFN);
-			matchFilter.push(customFilterLN);
-			matchFilter.push(customFilterEM);
+			// String filter (name/email)
+			if (stringFilterValue) {
+				const columnFirstName = (row.firstName || '').toLowerCase();
+				const columnLastName = (row.lastName || '').toLowerCase();
+				const columnEmail = (row.email || '').toLowerCase();
 
-			return (
-				(matchFilter.some(Boolean) && customFilterCO) || (!dateFilterValue && !stringFilterValue)
-			);
+				return (
+					columnFirstName.includes(stringFilterValue) ||
+					columnLastName.includes(stringFilterValue) ||
+					columnEmail.includes(stringFilterValue)
+				);
+			}
+
+			return true;
 		};
 	}
 
@@ -140,6 +159,7 @@ export class ResponsesTableComponent {
 			'First Name',
 			'Last Name',
 			'Email',
+			'License Code',
 			'Created On',
 			...Object.keys(this.quizResponses[0]?.frequencies || {}),
 		];
@@ -151,6 +171,7 @@ export class ResponsesTableComponent {
 					response.firstName,
 					response.lastName,
 					response.email,
+					response.licenseCode,
 					response.createdOn,
 					...Object.values(response.frequencies),
 				].join(',')

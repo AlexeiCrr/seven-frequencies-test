@@ -55,7 +55,7 @@ export class GreetingComponent {
 				const licenseCode = params['licenseCode'];
 				if (licenseCode) {
 					this.form.get('licenseCode')?.setValue(licenseCode);
-					this.onPromoCodeEntered();
+					this.onLicenseCodeEnter();
 				}
 			})
 		);
@@ -69,7 +69,7 @@ export class GreetingComponent {
 		);
 		this.subscriptions.add(
 			this.form.get('licenseCode')?.valueChanges.subscribe((value: string) => {
-				this.onPromoCodeEntered();
+				this.onLicenseCodeEnter();
 			})
 		);
 	}
@@ -104,10 +104,11 @@ export class GreetingComponent {
 			company: this.form.value.jobTitle,
 			hasSubscribed: this.form.value.hasSubscribed,
 			licenseCode: this.form.value.licenseCode,
+			quizStartedAt: new Date(),
 		});
 	}
 
-	public onPromoCodeEntered(): void {
+	public onLicenseCodeEnter(): void {
 		const licenseCodeControl = this.form.get('licenseCode');
 		const licenseCode = licenseCodeControl?.value;
 		this.licenseValid = false;

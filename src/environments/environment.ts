@@ -5,8 +5,8 @@
 export const environment = {
 	production: true,
 	envName: 'prod',
-	// apiUrl: 'https://i7ipyw6g26.execute-api.us-west-1.amazonaws.com/prod',
-	apiUrl: 'https://i7ipyw6g26.execute-api.us-west-1.amazonaws.com/dev',
+	apiUrl: 'https://i7ipyw6g26.execute-api.us-west-1.amazonaws.com/prod',
+	// apiUrl: 'https://i7ipyw6g26.execute-api.us-west-1.amazonaws.com/dev',
 	cognito: {
 		region: 'us-west-1',
 		tokenScopes: ['openid', 'email', 'profile'],

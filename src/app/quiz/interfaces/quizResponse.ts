@@ -20,6 +20,7 @@ export interface QuizResponse {
 	createdOn: string;
 	answers: Answer[];
 	frequencies: FrequencyMap;
+	licenseCode?: string;
 }
 
 export interface QuizResult {
@@ -32,7 +33,7 @@ export interface QuizResult {
 	frequencies: Frequency[];
 }
 
-interface FrequencyMap {
+export interface FrequencyMap {
 	[key: string]: number;
 }
 export interface Frequency {

@@ -11,7 +11,7 @@ import { ModifyResponseStartAction } from 'src/app/admin/actions/admin.actions';
 import { EditUserDialogComponent } from 'src/app/admin/components/edit-user-data/edit-user-dialog.component';
 import { AdminService } from 'src/app/admin/services/admin.service';
 import { ResendResponseService } from 'src/app/admin/services/response.service';
-import { QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
+import { Frequency, QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
 import { AdminState } from '../../reducers/admin.reducers';
 import {
 	selectModifyResponseStatus,
@@ -39,6 +39,8 @@ export class ResponsePageComponent implements OnInit {
 	public changeDataDialogOpen = false;
 	private unsubscribe$ = new Subject<void>();
 	public responseData: QuizResponse | null = null;
+	public sortedFrequenciesResult: Frequency[] = null;
+	public topThreeFrequencies: Frequency[] = null;
 
 	private readonly subscriptions = new Subscription();
 
@@ -75,15 +77,28 @@ export class ResponsePageComponent implements OnInit {
 				this.quizResponse = quizResponse;
 
 				if (this.quizResponse?.frequencies) {
-					const sortedFrequencies = Object.entries(quizResponse.frequencies).sort(
-						(a, b) => b[1] - a[1]
-					);
-					const top3Frequencies = sortedFrequencies.slice(0, 3).reverse();
-					const frequencies = top3Frequencies.map((item) => {
-						return { name: item[0], value: item[1] };
-					});
+					// const sortedFrequencies = Object.entries(quizResponse.frequencies)
+					// 	.sort((a, b) => b[1] - a[1])
+					// 	.map(([name, value]) => ({ name, value }));
 
-					this.responseData = { ...this.quizResponse, frequencies: frequencies as any };
+					const sortedFrequencies = Object.entries(quizResponse.frequencies)
+						.sort((a, b) => {
+							// First, sort by value in descending order
+							if (b[1] !== a[1]) {
+								return b[1] - a[1];
+							}
+							// If values are equal, sort alphabetically by name
+							return a[0].localeCompare(b[0]);
+						})
+						.map(([name, value]) => ({ name, value }));
+
+					this.sortedFrequenciesResult = sortedFrequencies as Frequency[];
+					this.topThreeFrequencies = sortedFrequencies.slice(0, 3) as Frequency[];
+
+					this.responseData = {
+						...this.quizResponse,
+						frequencies: sortedFrequencies as any,
+					};
 				}
 
 				this.cdr.markForCheck();
@@ -129,9 +144,7 @@ export class ResponsePageComponent implements OnInit {
 		});
 	}
 
-	public handleDownloadResults() {}
-
-	private createAndDownloadPDF(): void {
+	public createAndDownloadPDF(): void {
 		const element = document.getElementById('pdf-content');
 		if (element) {
 			const opt = {

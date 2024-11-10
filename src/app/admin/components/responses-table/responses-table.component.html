@@ -4,9 +4,19 @@
 			<mat-label>Name/Email</mat-label>
 			<input
 				type="text"
-				aria-label="Departure station"
+				aria-label="Name or Email"
 				matInput
 				formControlName="stringSearch"
+				(keyup)="applyFilter()"
+			/>
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<mat-label>License Code</mat-label>
+			<input
+				type="text"
+				aria-label="License Code"
+				matInput
+				formControlName="licenseSearch"
 				(keyup)="applyFilter()"
 			/>
 		</mat-form-field>
@@ -27,7 +37,7 @@
 	<button
 		class="reset-button"
 		mat-raised-button
-		[disabled]="!dateSearch && !stringSearch"
+		[disabled]="!dateSearch && !stringSearch && !licenseSearch"
 		color="primary"
 		(click)="onResetDate()"
 	>
@@ -64,6 +74,11 @@
 	<ng-container matColumnDef="email">
 		<th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
 		<td class="cell" mat-cell *matCellDef="let element">{{ element.email }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="licenseCode">
+		<th class="header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>License Code</th>
+		<td class="cell" mat-cell *matCellDef="let element">{{element.licenseCode}}</td>
 	</ng-container>
 
 	<ng-container matColumnDef="createdOn">

@@ -1,64 +1,64 @@
 @import 'variables.scss';
 
 .admin-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .admin-page-container {
-  width: 100%;
-  max-width: 1280px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+	width: 100%;
+	max-width: 1400px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 
-  @media (max-width: $mobile-width) {
-    padding: 0 20px 40px;
-  }
+	@media (max-width: $mobile-width) {
+		padding: 0 20px 40px;
+	}
 }
 
 .admin-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-  @media (max-width: $mobile-width) {
-    flex-direction: column-reverse;
-    justify-content: start;
-    align-items: flex-start;
-  }
+	@media (max-width: $mobile-width) {
+		flex-direction: column-reverse;
+		justify-content: start;
+		align-items: flex-start;
+	}
 }
 
 .user-container {
-  @media (max-width: $mobile-width) {
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
+	@media (max-width: $mobile-width) {
+		align-items: center;
+		width: 100%;
+		margin-top: 20px;
+		display: flex;
+		justify-content: space-between;
+	}
 }
 
 .user-name {
-  margin-right: 20px;
+	margin-right: 20px;
 }
 
 .admin-title {
-  margin-top: 40px;
-  font-size: 32px;
-  line-height: 32px;
-  font-family: Supply-Regular, sans-serif;
+	margin-top: 40px;
+	font-size: 32px;
+	line-height: 32px;
+	font-family: Supply-Regular, sans-serif;
 
-  @media (max-width: $mobile-width) {
-    margin-top: 20px;
-  }
+	@media (max-width: $mobile-width) {
+		margin-top: 20px;
+	}
 }
 
 .admin-table {
-  width: 100%;
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
+	width: 100%;
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
 }

@@ -61,7 +61,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="user-frequencies">
+				<!-- <div class="user-frequencies">
 					<div class="section-header">Frequencies</div>
 					<div class="frequencies-table">
 						<div class="frequencies-item">
@@ -91,6 +91,15 @@
 						<div class="frequencies-item">
 							<div class="frequencies-key">Healer</div>
 							<div class="frequencies-value">{{ quizResponse?.frequencies["Healer"] }}</div>
+						</div>
+					</div>
+				</div> -->
+				<div class="user-frequencies">
+					<div class="section-header">Frequencies</div>
+					<div class="frequencies-table">
+						<div class="frequencies-item" *ngFor="let frequency of sortedFrequenciesResult">
+							<div class="frequencies-key">{{ frequency.name }}</div>
+							<div class="frequencies-value">{{ frequency.value }}</div>
 						</div>
 					</div>
 				</div>
@@ -141,7 +150,7 @@
 				</p>
 				<br />
 				<div
-					*ngFor="let frequency of quizResponse.frequencies; let i = index"
+					*ngFor="let frequency of topThreeFrequencies; let i = index"
 					style="float: left; margin-right: 40px; margin-bottom: 20px"
 				>
 					<img
@@ -173,10 +182,7 @@
 			</div>
 
 			<div style="clear: left">
-				<div
-					*ngFor="let frequency of quizResponse.frequencies; let i = index"
-					style="color: #5e6153"
-				>
+				<div *ngFor="let frequency of topThreeFrequencies; let i = index" style="color: #5e6153">
 					<p
 						style="
 							margin-bottom: 5px;
@@ -226,7 +232,7 @@
 					just for your frequency.
 				</p>
 				<a
-					[href]="'https://taoc-quiz-media.s3.us-west-1.amazonaws.com/workbook/' + quizResponse.frequencies[0].name.toLowerCase() + '.pdf'"
+					[href]="'https://taoc-quiz-media.s3.us-west-1.amazonaws.com/workbook/' + topThreeFrequencies[0].name.toLowerCase() + '.pdf'"
 					download="download"
 					target="_blank"
 					style="text-decoration: none"
