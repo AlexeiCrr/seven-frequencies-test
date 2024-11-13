@@ -30,7 +30,7 @@
 	<div class="modal-content">
 		<h2>Generate License Codes</h2>
 		<form [formGroup]="generateCodesForm" (ngSubmit)="handleGenerateCodes()">
-			<mat-form-field appearance="fill">
+			<mat-form-field appearance="fill" class="codes-amount-input">
 				<mat-label>Enter the amount of new license codes</mat-label>
 				<input matInput type="text" formControlName="amount" min="1" />
 				<mat-error *ngIf="generateCodesForm.get('amount')?.hasError('required')"
