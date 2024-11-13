@@ -1,20 +1,60 @@
 <div class="admin-page" *ngIf="isSignedIn">
-  <div class="admin-page-container">
-    <div class="admin-header">
-      <h2 class="admin-title">Quiz Responses</h2>
-      <div class="user-container">
-        <span class="user-name"
-          >Authorized as: <b>{{ authorizedUser.username }}</b></span
-        >
-        <button (click)="onSignOut()" mat-raised-button>Logout</button>
-      </div>
-    </div>
-    <div class="admin-table">
-      <app-responses-table
-        *ngIf="!isLoading && quizResponses.length"
-        [quizResponses]="quizResponses"
-      ></app-responses-table>
-      <mat-spinner *ngIf="isLoading"></mat-spinner>
-    </div>
-  </div>
+	<div class="admin-page-container">
+		<div class="admin-header">
+			<h2 class="admin-title">Quiz Responses</h2>
+			<div class="user-container">
+				<span class="user-name">Authorized as: <b>{{ authorizedUser.username }}</b></span>
+				<button (click)="onSignOut()" mat-raised-button>Logout</button>
+				<button
+					class="manage-codes-btn"
+					mat-raised-button
+					color="primary"
+					(click)="openGenerateCodesModal()"
+				>
+					Manage License Codes
+				</button>
+			</div>
+		</div>
+		<div class="admin-table">
+			<app-responses-table
+				*ngIf="!isLoading && quizResponses.length"
+				[quizResponses]="quizResponses"
+			></app-responses-table>
+			<mat-spinner *ngIf="isLoading"></mat-spinner>
+		</div>
+	</div>
+</div>
+
+<!-- Add New Codes Modal -->
+<div class="modal-overlay" *ngIf="isModalOpen">
+	<div class="modal-content">
+		<h2>Generate License Codes</h2>
+		<form [formGroup]="generateCodesForm" (ngSubmit)="handleGenerateCodes()">
+			<mat-form-field appearance="fill">
+				<mat-label>Enter the amount of new license codes</mat-label>
+				<input matInput type="text" formControlName="amount" min="1" />
+				<mat-error *ngIf="generateCodesForm.get('amount')?.hasError('required')"
+					>Amount is required</mat-error
+				>
+				<mat-error *ngIf="generateCodesForm.get('amount')?.hasError('min')"
+					>Amount must be at least 1</mat-error
+				>
+			</mat-form-field>
+			<div class="modal-actions">
+				<button mat-button type="button" (click)="closeGenerateCodesModal()">Cancel</button>
+				<button
+					mat-raised-button
+					type="submit"
+					class="generate-codes-btn"
+					disabled="isLoadingCodes"
+					[disabled]="!generateCodesForm.valid"
+				>
+					<span *ngIf="!isLoadingCodes"> Generate </span>
+					<div class="progress-spinner" *ngIf="isLoadingCodes">
+						<mat-spinner></mat-spinner>
+					</div>
+				</button>
+			</div>
+		</form>
+	</div>
 </div>

@@ -32,6 +32,14 @@
 }
 
 .user-container {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+	.manage-codes-btn {
+		color: #fff !important;
+	}
+
 	@media (max-width: $mobile-width) {
 		align-items: center;
 		width: 100%;
@@ -61,4 +69,65 @@
 	margin-top: 10px;
 	display: flex;
 	justify-content: center;
+}
+
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.modal-content {
+	background-color: white;
+	padding: 20px;
+	border-radius: 4px;
+	width: 400px;
+	max-width: 90%;
+}
+
+.modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+
+	button {
+		margin-left: 10px;
+		padding: 6px 12px;
+
+		&.generate-codes-btn {
+			min-width: 160px;
+		}
+	}
+}
+
+::ng-deep .success-snackbar {
+	.mdc-snackbar__surface {
+		--mdc-snackbar-container-color: #4bb543;
+	}
+
+	.mdc-snackbar__action {
+		--mat-snack-bar-button-color: #fff;
+	}
+
+	.mdc-snackbar__label {
+		text-transform: uppercase;
+	}
+}
+.progress-spinner {
+	// position: absolute;
+	// left: 50%;
+	// top: 50%;
+	// transform: translate(-50%, -50%);
+
+	::ng-deep .mat-mdc-progress-spinner {
+		width: 24px !important;
+		height: 24px !important;
+	}
 }

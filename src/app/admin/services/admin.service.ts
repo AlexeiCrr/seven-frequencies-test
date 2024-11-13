@@ -25,4 +25,9 @@ export class AdminService {
 		const url = `${environment.apiUrl}/response`;
 		return this.http.put<QuizResponse>(url, data);
 	}
+
+	public addLicenseCodes(amount: number): Observable<Blob> {
+		const url = `${environment.apiUrl}/codes`;
+		return this.http.patch(url, { amount }, { responseType: 'blob' });
+	}
 }
