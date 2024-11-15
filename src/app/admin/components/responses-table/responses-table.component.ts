@@ -44,7 +44,7 @@ export class ResponsesTableComponent {
 	@ViewChild(MatSort) public sort: MatSort;
 
 	public constructor(
-		private readonly router: Router,
+		private router: Router,
 		private dialog: MatDialog
 	) {}
 

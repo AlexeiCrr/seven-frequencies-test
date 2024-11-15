@@ -23,6 +23,7 @@ import { ResponsePageComponent } from './components/response-page/response-page.
 import { ResponsesTableComponent } from './components/responses-table/responses-table.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
 import { EditUserDialogComponent } from 'src/app/admin/components/edit-user-data/edit-user-dialog.component';
 import { ReportStatsModalComponent } from 'src/app/admin/components/report-stats-modal/report-stats-modal.component';
 
@@ -55,6 +56,13 @@ const MatModules = [
 		EditUserDialogComponent,
 		ReportStatsModalComponent,
 	],
-	imports: [CommonModule, ReactiveFormsModule, ...MatModules, NgxMaskDirective, NgxMaskPipe],
+	imports: [
+		...MatModules,
+		CommonModule,
+		RouterModule,
+		ReactiveFormsModule,
+		NgxMaskDirective,
+		NgxMaskPipe,
+	],
 })
 export class AdminModule {}

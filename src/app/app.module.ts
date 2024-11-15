@@ -31,6 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { QuizModule } from './quiz/quiz.module';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 const ngrxReducers = {
 	quizStore: quizReducer,
@@ -76,7 +77,7 @@ const MatModules = [
 		StoreDevtoolsModule.instrument(ngrxStoreDevtoolsSettings),
 		StoreRouterConnectingModule.forRoot(),
 	],
-	providers: [provideEnvironmentNgxMask()],
+	providers: [provideEnvironmentNgxMask(), provideCharts(withDefaultRegisterables())],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
