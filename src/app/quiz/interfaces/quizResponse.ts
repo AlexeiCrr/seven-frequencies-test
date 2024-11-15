@@ -21,6 +21,7 @@ export interface QuizResponse {
 	answers: Answer[];
 	frequencies: FrequencyMap;
 	licenseCode?: string;
+	quizStartedAt?: Date;
 }
 
 export interface QuizResult {

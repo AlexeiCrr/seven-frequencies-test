@@ -33,7 +33,6 @@
 			<mat-datepicker #picker></mat-datepicker>
 		</mat-form-field>
 	</div>
-
 	<button
 		class="reset-button"
 		mat-raised-button
@@ -43,6 +42,9 @@
 	>
 		Reset Filters
 	</button>
+</form>
+
+<div>
 	<button
 		class="reset-button"
 		mat-raised-button
@@ -52,7 +54,16 @@
 	>
 		Download All Results
 	</button>
-</form>
+	<button
+		class="reset-button"
+		mat-raised-button
+		[disabled]="!quizResponses"
+		color="primary"
+		(click)="handleOpenReportModal()"
+	>
+		View Report
+	</button>
+</div>
 
 <table
 	*ngIf="quizResponses.length"
@@ -89,49 +100,98 @@
 	</ng-container>
 
 	<ng-container matColumnDef="maven">
-		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Maven</th>
+		<th
+			class="header-cell header-cell--frequency"
+			mat-header-cell
+			mat-sort-header
+			*matHeaderCellDef
+		>
+			Maven
+		</th>
 		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
 			{{ element.frequencies["Maven"] }}
 		</td>
 	</ng-container>
 
 	<ng-container matColumnDef="challenger">
-		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Challenger</th>
+		<th
+			class="header-cell header-cell--frequency"
+			mat-header-cell
+			mat-sort-header
+			*matHeaderCellDef
+		>
+			Challenger
+		</th>
 		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
 			{{ element.frequencies["Challenger"] }}
 		</td>
 	</ng-container>
 
 	<ng-container matColumnDef="commander">
-		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Commander</th>
+		<th
+			class="header-cell header-cell--frequency"
+			mat-header-cell
+			mat-sort-header
+			*matHeaderCellDef
+		>
+			Commander
+		</th>
 		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
 			{{ element.frequencies["Commander"] }}
 		</td>
 	</ng-container>
 
 	<ng-container matColumnDef="motivator">
-		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Motivator</th>
+		<th
+			class="header-cell header-cell--frequency"
+			mat-header-cell
+			mat-sort-header
+			*matHeaderCellDef
+		>
+			Motivator
+		</th>
 		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
 			{{ element.frequencies["Motivator"] }}
 		</td>
 	</ng-container>
 
 	<ng-container matColumnDef="seer">
-		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Seer</th>
+		<th
+			class="header-cell header-cell--frequency"
+			mat-header-cell
+			mat-sort-header
+			*matHeaderCellDef
+		>
+			Seer
+		</th>
 		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
 			{{ element.frequencies["Seer"] }}
 		</td>
 	</ng-container>
 
 	<ng-container matColumnDef="professor">
-		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Professor</th>
+		<th
+			class="header-cell header-cell--frequency"
+			mat-header-cell
+			mat-sort-header
+			*matHeaderCellDef
+		>
+			Professor
+		</th>
 		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
 			{{ element.frequencies["Professor"] }}
 		</td>
 	</ng-container>
 
 	<ng-container matColumnDef="healer">
-		<th class="header-cell header-cell--frequency" mat-header-cell *matHeaderCellDef>Healer</th>
+		<th
+			class="header-cell header-cell--frequency"
+			mat-header-cell
+			mat-sort-header
+			*matHeaderCellDef
+		>
+			Healer
+		</th>
 		<td class="cell cell--frequency" mat-cell *matCellDef="let element">
 			{{ element.frequencies["Healer"] }}
 		</td>

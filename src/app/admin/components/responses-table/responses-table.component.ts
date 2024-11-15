@@ -5,7 +5,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ReportStatsModalComponent } from 'src/app/admin/components/report-stats-modal/report-stats-modal.component';
 import { QuizResponse } from 'src/app/quiz/interfaces/quizResponse';
 
 @Component({
@@ -41,7 +43,10 @@ export class ResponsesTableComponent {
 	@ViewChild(MatPaginator) public paginator: MatPaginator;
 	@ViewChild(MatSort) public sort: MatSort;
 
-	public constructor(private readonly router: Router) {}
+	public constructor(
+		private readonly router: Router,
+		private dialog: MatDialog
+	) {}
 
 	public ngOnInit(): void {
 		this.searchFormInit();
@@ -160,6 +165,7 @@ export class ResponsesTableComponent {
 			'Last Name',
 			'Email',
 			'License Code',
+			'Started At',
 			'Created On',
 			...Object.keys(this.quizResponses[0]?.frequencies || {}),
 		];
@@ -173,6 +179,7 @@ export class ResponsesTableComponent {
 					response.email,
 					response.licenseCode,
 					response.createdOn,
+					response.quizStartedAt,
 					...Object.values(response.frequencies),
 				].join(',')
 			),
@@ -189,5 +196,15 @@ export class ResponsesTableComponent {
 			link.click();
 			document.body.removeChild(link);
 		}
+	}
+
+	public handleOpenReportModal(): void {
+		this.dialog.open(ReportStatsModalComponent, {
+			width: '600px',
+			data: {
+				// You can pass any data to the modal here
+				quizResponses: this._quizResponses,
+			},
+		});
 	}
 }

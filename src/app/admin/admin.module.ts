@@ -24,6 +24,7 @@ import { ResponsesTableComponent } from './components/responses-table/responses-
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditUserDialogComponent } from 'src/app/admin/components/edit-user-data/edit-user-dialog.component';
+import { ReportStatsModalComponent } from 'src/app/admin/components/report-stats-modal/report-stats-modal.component';
 
 const MatModules = [
 	MatTableModule,
@@ -52,6 +53,7 @@ const MatModules = [
 		ResponsePageComponent,
 		AnswersTableComponent,
 		EditUserDialogComponent,
+		ReportStatsModalComponent,
 	],
 	imports: [CommonModule, ReactiveFormsModule, ...MatModules, NgxMaskDirective, NgxMaskPipe],
 })
