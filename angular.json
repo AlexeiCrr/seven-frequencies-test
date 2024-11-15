@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "quiz:build:production"
+              "buildTarget": "quiz:build:production"
             },
             "development": {
-              "browserTarget": "quiz:build:development"
+              "buildTarget": "quiz:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "quiz:build"
+            "buildTarget": "quiz:build"
           }
         },
         "test": {
